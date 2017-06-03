@@ -9,7 +9,7 @@
     <div class="header-link">
       <a href = "#" class="link-item">我的收藏</a>
       <a href = "#" class="link-item">购物车(0)</a>
-      <a href = "src/user/login.jsp" class="link-item">登陆</a>
-      <a href = "src/user/register.jsp" class="link-item">注册</a>
+      <a href = "user/login.jsp" class="link-item">登陆</a>
+      <a href = "user/register.jsp" class="link-item">注册</a>
     </div>
   </div>

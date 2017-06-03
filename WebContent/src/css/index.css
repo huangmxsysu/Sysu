@@ -59,6 +59,10 @@
       border-radius: 5px;
       outline-color:#fff;
     }
+    .search-icon:hover{
+      background-color: #fff;
+      color:#669999;
+    }
 
     .header-link{
       position:absolute;
