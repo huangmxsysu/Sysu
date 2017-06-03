@@ -21,13 +21,13 @@
     <div class = "main-icon"><a href = "#">Sysu闲置</a></div>
     <div class = "search-box">
         <input type="text" id = "search-text" name = "search-text" placeholder = "关键字">
-        <input type = "button" class="search-icon" value = "搜索"/>
+        <button class="search-icon">搜索</button>
     </div>
     <div class="header-link">
       <a href = "#" class="link-item">我的收藏</a>
       <a href = "#" class="link-item">购物车(0)</a>
-      <a href = "#" class="link-item">登陆</a>
-      <a href = "#" class="link-item">注册</a>
+      <a href = "src/user/login.jsp" class="link-item">登陆</a>
+      <a href = "src/user/register.jsp" class="link-item">注册</a>
     </div>
   </div>
 
@@ -90,7 +90,7 @@
 
 
     <div class = "content">右侧主体
-    <%
+<%--     <%
 			// 驱动程序名
 String driver = "com.mysql.jdbc.Driver";
 // URL指向要访问的数据库名scutcs
@@ -124,7 +124,7 @@ catch(ClassNotFoundException e)
     System.out.println("Sorry,can`t find the Driver!");
     e.printStackTrace();
 }
-%>
+%> --%>
     
     
     </div>
