@@ -79,46 +79,8 @@
     </div>
   </div>
 
+<jsp:include page="site/main.jsp" />
 
-    <div class = "content">右侧主体
-<%--     <%
-			// 驱动程序名
-String driver = "com.mysql.jdbc.Driver";
-// URL指向要访问的数据库名scutcs
-String url = "jdbc:mysql://127.0.0.1:3306/runoob";
-// MySQL配置时的用户名
-String user = "root";
-// MySQL配置时的密码
-String password = "huangmxsysu";
-try
-{
-    // 加载驱动程序
-    Class.forName(driver).newInstance();
-    // 连续数据库
-    Connection conn = DriverManager.getConnection(url, user, password);
-    if(!conn.isClosed())
-        out.println("Succeeded connecting to the Database!");
-    // statement用来执行SQL语句
-    Statement statement = conn.createStatement();
-    ResultSet rs = statement.executeQuery("select * from websites");
-    out.println("<br/>");
-    while(rs.next())
-    {
-        out.println(rs.getString("name"));
-        out.println(rs.getString("url"));
-        out.println("<br/>");
-    }
-    
-}
-catch(ClassNotFoundException e)
-{
-    System.out.println("Sorry,can`t find the Driver!");
-    e.printStackTrace();
-}
-%> --%>
-    
-    
-    </div>
   </div>
 
 
