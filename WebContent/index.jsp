@@ -15,7 +15,7 @@
   	<jsp:include page="site/headinfo.jsp" />
   	
     <title>中山大学-物品交易-首页</title>
-    <link href="src/css/index.css" rel="stylesheet">
+    
   </head>
   <body>
   

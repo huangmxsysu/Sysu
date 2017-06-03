@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
         <%@ page language="java" %>
-    <%@ page import="sysu.xianzhi.test.*"%>
+        <jsp:useBean id='tmp' scope='page' class='xianzhi.test.testBean'/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,8 +11,8 @@
 </head>
 <body>
 <%
-main tmp=new main();
-String s=tmp.xt();
+String s=tmp.getBeans();
+out.print("jsp:useBean Test Success<br />");
 %>
 <%=s%>
 </body>

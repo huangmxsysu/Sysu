@@ -10,18 +10,15 @@
 <html lang="zh-CN">
 <head>
 <base href=" <%=basePath%>">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<jsp:include page="../site/headinfo.jsp" />
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<title>注册-合肥学院物品交易</title>
-<!-- Bootstrap -->
-<link href="src/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-<link href="src/index.css" rel="stylesheet">
+<title>注册-中大闲置</title>
+
 <link href="src/css/sign.css" rel="stylesheet">
 
 </head>
 <body>
+<jsp:include page="../site/header.jsp"  flush="true" />
 
   <div class="box">
     <div class="pad">
@@ -43,12 +40,12 @@
         <input tpye = "text" id = "name" placeholder="黄某某" required/>
         <div></div>
         <input type = "checkbox" id = "agree" />
-        <div id = "agreement">我已经阅读了<a id = "agree-link" href = "src/user/agreement.jsp" target = "_blank">《用户协议》</div>
+        <div id = "agreement">我已经阅读了<a id = "agree-link" href = "user/agreement.jsp" target = "_blank">《用户协议》</div>
         <button type = "submit">注册</button>
       </form>
 
     </div>
   </div>
-
+<jsp:include page="../site/footer.jsp" />
 </body>
 </html>
