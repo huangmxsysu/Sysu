@@ -23,23 +23,23 @@
   <div class="box">
     <div class="pad">
       <div class="form-header">注册界面</div>
-      <form class = "myform" action="#" >
+      <form class = "myform" method="post" action="user/register" >
         <label for="username">账号：</label>
-        <input type = "text" id = "username" placeholder="995304572@qq.com" required/>
+        <input type = "text" id = "username" name = "username" placeholder="995304572@qq.com" required/>
         <div></div>
         <label for="password">密码：</label>
-        <input tpye = "text" id = "password" placeholder="密码" required/>
+        <input tpye = "password" id = "password" name = "password" placeholder="密码" required/>
         <div></div>
         <label for="repeat_password">确认：</label>
-        <input tpye = "text" id = "repeat_password" placeholder="确认密码" required/>
+        <input tpye = "password" id = "repeat_password" name = "repeat_password" placeholder="确认密码" required/>
         <div></div>
         <label for="stu_num">学号：</label>
-        <input tpye = "text" id = "stu_num" placeholder="14348040" required/>
+        <input tpye = "text" id = "stu_num" name = "stu_num" placeholder="14348040" required/>
         <div></div>
         <label for="name">姓名：</label>
-        <input tpye = "text" id = "name" placeholder="黄某某" required/>
+        <input tpye = "text" id = "name" name = "name" placeholder="黄某某" required/>
         <div></div>
-        <input type = "checkbox" id = "agree" />
+        <input type = "checkbox" id = "agree" name = "agree"/>
         <div id = "agreement">我已经阅读了<a id = "agree-link" href = "user/agreement.jsp" target = "_blank">《用户协议》</div>
         <button type = "submit">注册</button>
       </form>
