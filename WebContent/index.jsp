@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -19,7 +20,7 @@
   <div class = "headerbar">
     <div class = "main-icon"><a href = "#">Sysu闲置</a></div>
     <div class = "search-box">
-        <input type="text" id = "search-text" name = "search-text">
+        <input type="text" id = "search-text" name = "search-text" placeholder = "关键字">
         <input type = "button" class="search-icon" value = "搜索"/>
     </div>
     <div class="header-link">
@@ -88,7 +89,45 @@
   </div>
 
 
-    <div class = "content">右侧主体</div>
+    <div class = "content">右侧主体
+    <%
+			// 驱动程序名
+String driver = "com.mysql.jdbc.Driver";
+// URL指向要访问的数据库名scutcs
+String url = "jdbc:mysql://127.0.0.1:3306/runoob";
+// MySQL配置时的用户名
+String user = "root";
+// MySQL配置时的密码
+String password = "huangmxsysu";
+try
+{
+    // 加载驱动程序
+    Class.forName(driver).newInstance();
+    // 连续数据库
+    Connection conn = DriverManager.getConnection(url, user, password);
+    if(!conn.isClosed())
+        out.println("Succeeded connecting to the Database!");
+    // statement用来执行SQL语句
+    Statement statement = conn.createStatement();
+    ResultSet rs = statement.executeQuery("select * from websites");
+    out.println("<br/>");
+    while(rs.next())
+    {
+        out.println(rs.getString("name"));
+        out.println(rs.getString("url"));
+        out.println("<br/>");
+    }
+    
+}
+catch(ClassNotFoundException e)
+{
+    System.out.println("Sorry,can`t find the Driver!");
+    e.printStackTrace();
+}
+%>
+    
+    
+    </div>
   </div>
 
 
@@ -99,3 +138,4 @@
 </body>
 
 </html>
+
