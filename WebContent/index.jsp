@@ -9,27 +9,18 @@
 <html lang="zh-CN">
   <head>
   	<base href=" <%=basePath%>">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  	
+  	<%--页面头部信息及jquery引入 --%>
+  	
+  	<jsp:include page="site/headinfo.jsp" />
+  	
     <title>中山大学-物品交易-首页</title>
-    <link href="src/index.css" rel="stylesheet">
+    
   </head>
   <body>
-  <div class = "headerbar">
-    <div class = "main-icon"><a href = "#">Sysu闲置</a></div>
-    <div class = "search-box">
-        <input type="text" id = "search-text" name = "search-text" placeholder = "关键字">
-        <button class="search-icon">搜索</button>
-    </div>
-    <div class="header-link">
-      <a href = "#" class="link-item">我的收藏</a>
-      <a href = "#" class="link-item">购物车(0)</a>
-      <a href = "src/user/login.jsp" class="link-item">登陆</a>
-      <a href = "src/user/register.jsp" class="link-item">注册</a>
-    </div>
-  </div>
+  
+    <%--引入导航部分 --%>
+	<jsp:include page="site/header.jsp" />
 
 
   <div class = "box">
@@ -131,8 +122,8 @@ catch(ClassNotFoundException e)
   </div>
 
 
-
-  <div class = "footerbar">-----Power By mosen----</div>
+<%--引入脚部 --%>
+<jsp:include page="site/footer.jsp" />
 
 
 </body>
