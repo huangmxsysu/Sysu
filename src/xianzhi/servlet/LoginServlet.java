@@ -12,6 +12,7 @@ import xianzhi.tools.MD5;
 import xianzhi.models.User;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
 
 /**
  * Servlet implementation class LoginServlet
@@ -43,6 +44,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+
+		
 		request.setCharacterEncoding("utf-8");
 		String username=request.getParameter("username");
 		
@@ -51,17 +54,39 @@ public class LoginServlet extends HttpServlet {
 		String hasUsername = "";
 		String samePwd = "";
 		Boolean isLogin = false;
+		//	    Cookie[]cookies=request.getCookies();
+		//	   String cookieValue= GetCookie.getCookie(cookies, "idNum");
+		//	   if(cookieValue!=null){
+		//			HttpSession session=request.getSession();
+		//		     String sessionId=session.getId();
+		//		     session.setAttribute("username",cookieValue);
+		//			session.setAttribute("isLogin", true);
+		//		 request.getRequestDispatcher("/index.jsp").forward(request, response);  
+		//		   
+		//	   }
+		
 			try {
 				if(DaoFactory.getIUserDAOInstance().findByUsername(username)!=null){
 				
 				User user=	DaoFactory.getIUserDAOInstance().findByUsername(username);
                 String pass=	MD5.getMD5(MD5.getMD5(password));
 					if(user.getPassword().equals(pass)){
-						 //session状态
-						 //HttpSession session=request.getSession();
-						 //String sessionId=	session.getId();
-						// session.setAttribute("sessionId",sessionId);
-						//session.setAttribute("loginstates", true);
+			
+						   String checkstate="sysu";
+						   checkstate =(String)request.getParameter("remember_me");
+							  
+							   if(checkstate!=null&&checkstate.equals("on")){
+								   Cookie cookie=new Cookie("idNum",user.getUsername());
+								   cookie.setMaxAge(60*60);
+								   response.addCookie(cookie);
+								   }
+								HttpSession session=request.getSession();
+							     String sessionId=session.getId();
+							     session.setAttribute("username",user.getUsername());
+								session.setAttribute("isLogin", true);
+								request.getRequestDispatcher("/index.jsp").forward(request, response);
+								
+								
 						System.out.println("密码正确，登陆成功！");
 						isLogin = true;
 					}
@@ -76,11 +101,7 @@ public class LoginServlet extends HttpServlet {
 					hasUsername = "用户名不存在，请先注册";			
 				}
 				
-				if(isLogin){
-					request.setAttribute("isLogin", isLogin);
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
-				}
-				else{
+				if(!isLogin){
 					request.setAttribute("isLogin", false);
 					request.setAttribute("samePwd", samePwd);
 					request.setAttribute("hasUsername", hasUsername);

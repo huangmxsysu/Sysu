@@ -35,6 +35,7 @@
         <div></div>
         <label for="password">密码：</label>
         <input tpye = "text" id = "password" name = "password" placeholder="密码" required/>
+        <input type="checkbox" id = "remember_me" name="remember_me"> 下次自动登录
         <button type = "submit">登陆</button>
       </form>
 
