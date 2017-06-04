@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xianzhi.factory.DaoFactory;
 import xianzhi.tools.MD5;
 import xianzhi.models.User;
+import xianzhi.dbHandle.*;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Cookie;
@@ -55,12 +55,11 @@ public class LoginServlet extends HttpServlet {
 		String samePwd = "";
 		Boolean isLogin = false;
 
-		
+		UserDbHandle userDbHandle = new UserDbHandle();
 			try {
-				if(DaoFactory.getIUserDAOInstance().findByUsername(username)!=null){
-				
-				User user=	DaoFactory.getIUserDAOInstance().findByUsername(username);
-                String pass=	MD5.getMD5(MD5.getMD5(password));
+				if(userDbHandle.findByUsername(username)!=null){
+				 	User user=	userDbHandle.findByUsername(username);
+                    String pass=	MD5.getMD5(MD5.getMD5(password));
 					if(user.getPassword().equals(pass)){
 			
 						   String checkstate="sysu";

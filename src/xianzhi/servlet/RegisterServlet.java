@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xianzhi.factory.DaoFactory;
 import xianzhi.models.User;
 import xianzhi.tools.MD5;
-import xianzhi.dao.proxy.UserDaoProxy;
+import xianzhi.dbHandle.UserDbHandle;
 /**
  * Servlet implementation class RegisterServlet
  */
@@ -57,14 +56,14 @@ public class RegisterServlet extends HttpServlet {
 		String isPwdSame="";
 		String isPwd="";
 		String isEmail="";
-		
+		UserDbHandle userDbHandle= new UserDbHandle();
 		
 		
 		try{
 				
 			//if(username.matches("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")&&((DaoFactory.getIUserDAOInstance().findByUsername(username))==null)){
 			//为了方便暂时不要考虑邮箱格式
-			if((DaoFactory.getIUserDAOInstance().findByUsername(username))==null){
+			if((userDbHandle.findByUsername(username)) == null){
 				
 				if(password.matches("[A-Za-z0-9]{3,}")){
 						
@@ -79,12 +78,12 @@ public class RegisterServlet extends HttpServlet {
 						user.setId(1);
 						
 			
-						if(DaoFactory.getIUserDAOInstance().doCreate(user)){
+						if (userDbHandle.doCreate(user)) {
 							isRegister=true;
 							System.out.println("register dao!");
 							
 							
-							List<User> all = DaoFactory.getIUserDAOInstance().findAll("") ;
+							List<User> all = userDbHandle.findAll("") ;
 							Iterator<User> iter = all.iterator() ;
 							User emp = null ;
 							while(iter.hasNext()){

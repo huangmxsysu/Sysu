@@ -1,15 +1,25 @@
-package xianzhi.dao.impl;
+package xianzhi.dbHandle;
+
 
 import java.util.* ;
 import java.sql.* ;
-import xianzhi.dao.* ;
 import xianzhi.models.* ;
-public class UserDaoImpl implements IUserDao{
+
+import xianzhi.dbc.DatabaseConnection;
+
+public class UserDbHandle{
+	
 	private Connection conn = null ;
 	private PreparedStatement pstmt = null ;
-	public UserDaoImpl(Connection conn){
-		this.conn = conn ;
-	}
+
+	public UserDbHandle(){
+		try {
+	    	this.conn=new DatabaseConnection().getConnection();
+	    } catch (Exception e) {
+		 		// TODO: handle exception
+	    	}
+    }
+	
 	public boolean doCreate(User user) throws Exception{
 		boolean flag = false ;
 		ResultSet max_id=this.conn.prepareStatement("select max(id) from user").executeQuery();
