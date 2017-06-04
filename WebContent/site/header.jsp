@@ -14,8 +14,9 @@
     <div class="header-link">
       <a href = "#" class="link-item">我的收藏</a>
       <a href = "#" class="link-item">购物车(0)</a>
-       <%if (isLogin!=null){
+       <%if (isLogin!=null&&isLogin==true){
             %>
+            <a href = "/Sysu/outLoginServlet" class = "link-item">退出登陆</a>
             <a href = "#" class="link-item"><%=username%></a>
             <%
        }else{%>
