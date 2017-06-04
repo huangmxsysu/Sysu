@@ -26,8 +26,9 @@
  <%
  Boolean isLogin=(Boolean)session.getAttribute("isLogin");
  String username=(String)session.getAttribute("UserNameOrName");
-/*  User user=(User)session.getAttribute("loginUser"); */
-/*  System.out.println("getUser"+user.getName()); */
+ User user=(User)session.getAttribute("loginUser"); 
+ System.out.println("getUser"+user.getId());
+ 
  %>
     <%--引入导航部分 --%>
 	<jsp:include page="site/header.jsp" />
@@ -50,6 +51,12 @@
 
       <div class = "side-item"><a href = "#" id = "item-name" >衣物鞋包</a><span>8</span></div>
       <div class = "side-seperator"></div>
+      
+      <div class = "side-item"><a href = "#" id = "item-name" >生活出行</a><span>6</span></div>
+      <div class = "side-seperator"></div>
+      
+      <div class = "side-item"><a href = "#" id = "item-name" >其他</a><span>11</span></div>
+      <div class = "side-seperator"></div>
     </div>
 
 
@@ -62,6 +69,9 @@
       <div class = "side-item"><a href = "#" id = "item-name" >用户2：物品b</a><span>13</span></div>
       <div class = "side-seperator"></div>
 
+      <div class = "side-item"><a href = "#" id = "item-name" >用户3：物品c</a><span>5</span></div>
+      <div class = "side-seperator"></div>
+      
       <div class = "side-item"><a href = "#" id = "item-name" >用户3：物品c</a><span>5</span></div>
       <div class = "side-seperator"></div>
     </div>
@@ -80,16 +90,16 @@
       <%} %>
       </div>
 
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=username%>&tab=info" id = "item-name" >个人中心</a></div>
+      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=info" id = "item-name" >个人中心</a></div>
       <div class = "side-seperator"></div>
       
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=username%>&tab=push" id = "item-name" >发布商品</a></div>
+      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=push" id = "item-name" >发布商品</a></div>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=username%>&tab=setting" id = "item-name" >设置</a></div>
+      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=setting" id = "item-name" >设置</a></div>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=username%>&tab=message" id = "item-name" >我的消息</a><span>5</span></div>
+      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=message" id = "item-name" >我的消息</a><span>5</span></div>
       <div class = "side-seperator"></div>
 
     </div>

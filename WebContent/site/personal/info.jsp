@@ -4,7 +4,7 @@
       <div class = "personal_header" style="height:400px">
 
         <div class="personal_imgbox" style="margin-top:-100px">
-          <img src="static/image/ac_24.png" alt=""/>
+          <img src="static/user_img/user1.png" alt=""/>
         </div>
         <div class = "personal_info" style="top:200px">
           <div class="personal_name">姓名：黄木旋</div>

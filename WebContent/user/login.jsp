@@ -51,17 +51,30 @@
 		<% 
 		} 
 		%>
-   <%if(request.getAttribute("isLogin")!=null&& request.getAttribute("isLogin").equals("false")){%>
+		
+		<%if(request.getParameter("login-info")!=null){%>
+			<div class = "myinfo-danger">
+				<%
+					out.print(request.getParameter("login-info"));
+				%>
+			</div>
+
+		<%}%>
+
+
+
+   		<%if(request.getAttribute("isLogin")!=null&& request.getAttribute("isLogin").equals("false")){%>
    			<div class = "myinfo-danger">
-		<%if(!request.getAttribute("samePwd").equals("")){
-		    out.print(request.getAttribute("samePwd")+"<br />");}
-		if(!request.getAttribute("hasUsername").equals("")){
-		    out.print(request.getAttribute("hasUsername"));}
+			<%
+				if(!request.getAttribute("samePwd").equals("")){
+			    	out.print(request.getAttribute("samePwd")+"<br />");}
+				if(!request.getAttribute("hasUsername").equals("")){
+			    	out.print(request.getAttribute("hasUsername"));}
+			%>
+			</div>
+		<% 
+		} 
 		%>
-		</div>
-	<% 
-	} 
-	%>
   </div>
 <jsp:include page="../site/footer.jsp" />
 </body>

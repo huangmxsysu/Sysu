@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
 										UserNameOrName=user.getUsername();
 									 }
 								session.setAttribute("UserNameOrName", UserNameOrName);
-//								session.setAttribute("loginUser",user);
+								session.setAttribute("loginUser",user);
 								session.setAttribute("isLogin", true);
 									 
 								request.getRequestDispatcher("/index.jsp").forward(request, response);

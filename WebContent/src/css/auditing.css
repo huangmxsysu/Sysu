@@ -1,0 +1,53 @@
+
+.push_pad{
+  padding:20px;
+  border:1px solid #ddd;
+  text-align: center;
+
+}
+.push_pad *{
+  box-sizing: border-box;
+
+}
+
+.form-header{
+
+  border-bottom: 3px solid #669999;
+  width:100%;
+  color:#669999;
+  padding-right:10px;
+  padding-bottom: 20px;
+  
+  margin:0 auto 15px;
+}
+
+
+  table {
+  	margin-top:20px;
+	width:100%;
+    
+    border:1px solid #ddd;
+  }
+  table *{
+  text-align: center;
+  }
+  
+  tr{
+  	height:40px;
+    border:1px solid  #669999;
+  }
+  tr th{
+    color:#fff;
+    background-color: #669999;
+  }
+  .mybtn-success,.mybtn-danger{
+    border:none;
+    color:#fff;
+    padding:4px 10px;
+  }
+  .mybtn-danger{
+    background-color:#CC6666;
+  }
+  .mybtn-success{
+    background-color: #669999;
+  }

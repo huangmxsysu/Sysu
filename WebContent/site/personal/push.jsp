@@ -25,6 +25,18 @@
 <div></div>
 <textarea rows = "3" id = "content-goods" name = "content-goods"></textarea>
 <div></div>
+<label for = "img-goods">选择一个分类：</label>
+ <select >
+	 <option value="other">其他</option>
+	 <option value="book">书籍</option>
+	 <option value="live">生活出行</option>
+	 <option value="sport">体育运动</option>
+	 <option value="clothes">衣服鞋包</option>
+	 <option value="eletronic">电子产品</option>
+ </select>
+<div></div>
+
+ 
 <label for = "img-goods">物品图片：</label>
 <div></div>
 <input type = "file" id = "img-goods" name = "file"/>
