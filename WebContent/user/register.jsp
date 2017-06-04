@@ -20,6 +20,7 @@
 <body>
 <jsp:include page="../site/header.jsp"  flush="true" />
 
+
   <div class="box">
     <div class="pad">
       <div class="form-header">注册界面</div>
@@ -40,12 +41,31 @@
         <input tpye = "text" id = "name" name = "name" placeholder="黄某某" required/>
         <div></div>
         <input type = "checkbox" id = "agree" name = "agree"/>
-        <div id = "agreement">我已经阅读了<a id = "agree-link" href = "user/agreement.jsp" target = "_blank">《用户协议》</div>
+        <div id = "agreement">我已经阅读了<a id = "agree-link" href = "user/agreement.jsp" target = "_blank">《用户协议》</a></div>
         <button type = "submit">注册</button>
       </form>
-
+	
     </div>
+    <%
+	if(request.getAttribute("isRegister")!=null){
+	%>
+	<div class = "myinfo-danger">
+	<%if(!request.getAttribute("isEmail").equals("")){
+	    out.print(request.getAttribute("isEmail")+"<br />");}
+	if(!request.getAttribute("isPwd").equals("")){
+	    out.print(request.getAttribute("isPwd")+"<br />");}
+	if(!request.getAttribute("isPwdSame").equals("")){
+	    out.print(request.getAttribute("isPwdSame"));
+	}
+	%>
+	</div>
+	<%
+	}
+	%>
+
+
   </div>
 <jsp:include page="../site/footer.jsp" />
+
 </body>
 </html>

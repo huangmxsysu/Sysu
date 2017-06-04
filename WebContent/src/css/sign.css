@@ -4,6 +4,7 @@
   top:50%;
   left:50%;
   width:40%;
+  text-align:center;
   transform:translate(-50%,-50%);
 }
 .pad{
@@ -72,4 +73,21 @@ input[type="checkbox"]{
 #agreement a{
   text-decoration: none;
   cursor: pointer;
+}
+
+.myinfo-success,.myinfo-danger{
+  margin-top:20px;
+  padding:10px 0px;
+  opacity: 0.7;
+  border-radius: 10px;
+  color:#fff;
+  margin-left:30px;
+  margin-right: 30px;
+}
+.myinfo-success{
+  background-color: #66CC99;
+}
+.myinfo-danger{
+
+  background-color: #CC6666;
 }

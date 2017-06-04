@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import xianzhi.factory.DaoFactory;
 import xianzhi.models.User;
-import xianzhi.models.MD5;
+import xianzhi.tools.MD5;
+import xianzhi.dao.proxy.UserDaoProxy;
 /**
  * Servlet implementation class RegisterServlet
  */
@@ -52,6 +53,11 @@ public class RegisterServlet extends HttpServlet {
 		String name=request.getParameter("name");
 		User user=new User();
 		
+		boolean isRegister = false;
+		String isPwdSame="";
+		String isPwd="";
+		String isEmail="";
+		
 		
 		
 		try{
@@ -71,7 +77,7 @@ public class RegisterServlet extends HttpServlet {
 						user.setStu_num(stu_num);
 						user.setName(name);
 						user.setId(1);
-						boolean isRegister=false;
+						
 			
 						if(DaoFactory.getIUserDAOInstance().doCreate(user)){
 							isRegister=true;
@@ -87,32 +93,41 @@ public class RegisterServlet extends HttpServlet {
 							}
 						}
 			
-						request.setAttribute("info",isRegister);
+						request.setAttribute("isRegister",isRegister);
 						System.out.println("isRegister ==== " + isRegister);
-						if(isRegister){
-							request.getRequestDispatcher("/user/login.jsp").forward(request,response);
-						}
-						else{
-							request.getRequestDispatcher("/user/register.jsp").forward(request,response);
-						}
 						
 					}
 					
 					else{
-						
+						isPwdSame="两次密码不相同";
 						System.out.println("password!=repeat_password");
-						request.getRequestDispatcher("/user/register.jsp").forward(request,response);
+					
 					}
 				}
 				else{
+					isPwd="密码格式错误";
 					System.out.println("password不符合格式");//password不符合格式
-					request.getRequestDispatcher("/user/register.jsp").forward(request,response);
+					
 				}
 				
 			}
 			else{
+				isEmail="邮箱有重复";
 				System.out.println("email不符合email格式");//username不符合email格式
-				request.getRequestDispatcher("/user/register.jsp").forward(request,response);	
+				
+			}
+			
+			if(isRegister == true){
+				request.setAttribute("isRegister",isRegister);
+				request.getRequestDispatcher("/user/login.jsp").forward(
+						request, response);
+			}else{
+				request.setAttribute("isRegister",false);
+				request.setAttribute("isPwdSame",isPwdSame);
+				request.setAttribute("isPwd",isPwd);
+				request.setAttribute("isEmail",isEmail);
+				request.getRequestDispatcher("/user/register.jsp").forward(
+						request, response);
 			}
 			
 		}catch(Exception e){

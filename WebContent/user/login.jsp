@@ -22,10 +22,14 @@
 </head>
 <body>
 <jsp:include page="../site/header.jsp"  flush="true" />
+ 
+
+
   <div class="box">
+
     <div class="pad">
       <div class="form-header">登陆界面</div>
-      <form class = "myform" action="/Sysu/LoginServlet" Method="Post" >
+      <form class = "myform" action="/Sysu/LoginServlet" Method="POST" >
         <label for="username">账号：</label>
         <input type = "text" id = "username" name = "username" placeholder="邮箱地址" required/>
         <div></div>
@@ -35,6 +39,28 @@
       </form>
 
     </div>
+    
+       <%if(request.getAttribute("isRegister")!=null){%>
+   			<div class = "myinfo-success">
+		<%
+		    out.print("注册成功！您可以登陆了");
+		
+		%>
+		</div>
+		<% 
+		} 
+		%>
+   <%if(request.getAttribute("isLogin")!=null){%>
+   			<div class = "myinfo-danger">
+		<%if(!request.getAttribute("samePwd").equals("")){
+		    out.print(request.getAttribute("samePwd")+"<br />");}
+		if(!request.getAttribute("hasUsername").equals("")){
+		    out.print(request.getAttribute("hasUsername"));}
+		%>
+		</div>
+	<% 
+	} 
+	%>
   </div>
 <jsp:include page="../site/footer.jsp" />
 </body>

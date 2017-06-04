@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xianzhi.factory.DaoFactory;
-import xianzhi.models.MD5;
+import xianzhi.tools.MD5;
 import xianzhi.models.User;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginServlet
@@ -32,31 +34,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
-		String username=request.getParameter("username");
-		
-		String password=request.getParameter("password");
-	
-			try {
-				if(DaoFactory.getIUserDAOInstance().findByUsername(username)!=null){
-				
-				User user=	DaoFactory.getIUserDAOInstance().findByUsername(username);
-                String pass=	MD5.getMD5(MD5.getMD5(password));
-					if(user.getPassword().equals(pass)){
-						
-						System.out.println("密码正确，登陆成功！");
-						request.getRequestDispatcher("/index.jsp").forward(request, response);
-					}
-					
-				}
-				else{
-					
-					request.getRequestDispatcher("/user/login.jsp").forward(request, response);
-				}
-			} catch (Exception e) {
-			
-				e.printStackTrace();
-			}
+
 	}
 
 	/**
@@ -64,7 +42,54 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		String username=request.getParameter("username");
+		
+		String password=request.getParameter("password");
+		
+		String hasUsername = "";
+		String samePwd = "";
+		Boolean isLogin = false;
+			try {
+				if(DaoFactory.getIUserDAOInstance().findByUsername(username)!=null){
+				
+				User user=	DaoFactory.getIUserDAOInstance().findByUsername(username);
+                String pass=	MD5.getMD5(MD5.getMD5(password));
+					if(user.getPassword().equals(pass)){
+						 //session状态
+						 //HttpSession session=request.getSession();
+						 //String sessionId=	session.getId();
+						// session.setAttribute("sessionId",sessionId);
+						//session.setAttribute("loginstates", true);
+						System.out.println("密码正确，登陆成功！");
+						isLogin = true;
+					}
+					else{
+						System.out.println("密码不一致，请核对");	
+						samePwd = "密码不一致";
+					}
+					
+				}
+				else{
+					System.out.println("用户名不存在");
+					hasUsername = "用户名不存在，请先注册";			
+				}
+				
+				if(isLogin){
+					request.setAttribute("isLogin", isLogin);
+					request.getRequestDispatcher("/index.jsp").forward(request, response);
+				}
+				else{
+					request.setAttribute("isLogin", false);
+					request.setAttribute("samePwd", samePwd);
+					request.setAttribute("hasUsername", hasUsername);
+					request.getRequestDispatcher("/user/login.jsp").forward(request, response);
+				}
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
 	}
 
 }

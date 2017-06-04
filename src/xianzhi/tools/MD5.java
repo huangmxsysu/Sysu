@@ -1,4 +1,5 @@
-package xianzhi.models;
+package xianzhi.tools;
+
 /** 
 * MD5的算法在RFC1321 中定义 
 * 在RFC 1321中，给出了Test suite用来检验你的实现是否正确： 
