@@ -56,6 +56,8 @@ public class LoginServlet extends HttpServlet {
 		Boolean isLogin = false;
 
 		UserDbHandle userDbHandle = new UserDbHandle();
+		
+		String UserNameOrName="";
 			try {
 				if(userDbHandle.findByUsername(username)!=null){
 				 	User user=	userDbHandle.findByUsername(username);
@@ -72,9 +74,16 @@ public class LoginServlet extends HttpServlet {
 								   System.out.println("LoginServlet:   remember on! add Cookie.name=" + cookie.getName() + " Cookie.value =" + cookie.getValue());
 								   }
 								HttpSession session=request.getSession();
-							     String sessionId=session.getId();
-							     session.setAttribute("username",user.getUsername());
+
+								
+								if(user.getName()!=null && !user.getName().equals("")){
+										UserNameOrName=user.getName();
+								}else{
+										UserNameOrName=user.getUsername();
+									 }
+								session.setAttribute("UserNameOrName", UserNameOrName);
 								session.setAttribute("isLogin", true);
+									 
 								request.getRequestDispatcher("/index.jsp").forward(request, response);
 								
 								

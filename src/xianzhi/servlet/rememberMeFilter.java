@@ -12,6 +12,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
+import xianzhi.dbHandle.UserDbHandle;
+import xianzhi.models.User;
+
 /**
  * Servlet Filter implementation class rememberMeFilter
  */
@@ -43,14 +47,29 @@ public class rememberMeFilter implements Filter {
 		
 		Cookie[] cookies = req.getCookies();
 		String emailCookie=null;
+		UserDbHandle userDbHandle = new UserDbHandle();
+		String UserNameOrName = "";
 		if(cookies!=null){
 			for(Cookie cookie:cookies){
 				if("LOGIN_NAME".equals(cookie.getName())){
+					emailCookie = cookie.getValue();
+					 try {
+					 	if (userDbHandle.findByUsername(emailCookie) != null) {
+	  						 User user = userDbHandle.findByUsername(emailCookie);
+					     	 if(user.getName()!=null && !user.getName().equals("")){
+					     	 UserNameOrName=user.getName();
+					 	     }else{
+					 	    	UserNameOrName=user.getUsername();
+					         }
+							ses.setAttribute("UserNameOrName", UserNameOrName);
+							ses.setAttribute("isLogin", true);
+					 	}
+					} catch (Exception e) {
+									// TODO: handle exception
+							}
 					System.out.println("Filter:   LOGIN_NAME == cookie.getName   value ==" + cookie.getValue());
 					System.out.println("cookie剩下" + cookie.getMaxAge() + "秒");
-					emailCookie=cookie.getValue();
-					ses.setAttribute("username",emailCookie);
-					ses.setAttribute("isLogin", true);
+
 				}
 			}
 		}

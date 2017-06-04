@@ -4,7 +4,7 @@
   
   <% 
      
-  HttpServletRequest req = (HttpServletRequest) request ;
+ /*  HttpServletRequest req = (HttpServletRequest) request ;
 	
 	
 	Cookie[] cookies = req.getCookies();
@@ -15,10 +15,10 @@
 			System.out.println("cookie剩下" + cookie.getMaxAge() + "秒");
 	
 		}
-	}
+	} */
 	
   	 Boolean isLogin=(Boolean)session.getAttribute("isLogin");
-     String username=(String)session.getAttribute("username");
+     String username=(String)session.getAttribute("UserNameOrName");
   %>
     <div class = "main-icon"><a href = "#">Sysu闲置</a></div>
     <div class = "search-box">
