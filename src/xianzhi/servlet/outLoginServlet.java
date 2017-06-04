@@ -3,6 +3,7 @@ package xianzhi.servlet;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +30,16 @@ public class outLoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getSession().setAttribute("isLogin", false);
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		//request.getRequestDispatcher("/index.jsp").forward(request, response);
+		Cookie[] cookies=request.getCookies();
+			for(int i=0;i<cookies.length;++i){
+				System.out.println(cookies[i].getName()+"=========");
+				if("LOGIN_NAME".equals(cookies[i].getName())){
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+				}
+			}
+		response.sendRedirect("index.jsp");
 		
 	}
 

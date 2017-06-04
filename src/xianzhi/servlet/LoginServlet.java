@@ -54,16 +54,7 @@ public class LoginServlet extends HttpServlet {
 		String hasUsername = "";
 		String samePwd = "";
 		Boolean isLogin = false;
-		//	    Cookie[]cookies=request.getCookies();
-		//	   String cookieValue= GetCookie.getCookie(cookies, "idNum");
-		//	   if(cookieValue!=null){
-		//			HttpSession session=request.getSession();
-		//		     String sessionId=session.getId();
-		//		     session.setAttribute("username",cookieValue);
-		//			session.setAttribute("isLogin", true);
-		//		 request.getRequestDispatcher("/index.jsp").forward(request, response);  
-		//		   
-		//	   }
+
 		
 			try {
 				if(DaoFactory.getIUserDAOInstance().findByUsername(username)!=null){
@@ -76,9 +67,10 @@ public class LoginServlet extends HttpServlet {
 						   checkstate =(String)request.getParameter("remember_me");
 							  
 							   if(checkstate!=null&&checkstate.equals("on")){
-								   Cookie cookie=new Cookie("idNum",user.getUsername());
-								   cookie.setMaxAge(60*60);
+								   Cookie cookie=new Cookie("LOGIN_NAME",username);
+								   cookie.setMaxAge(30);
 								   response.addCookie(cookie);
+								   System.out.println("LoginServlet:   remember on! add Cookie.name=" + cookie.getName() + " Cookie.value =" + cookie.getValue());
 								   }
 								HttpSession session=request.getSession();
 							     String sessionId=session.getId();
@@ -102,7 +94,7 @@ public class LoginServlet extends HttpServlet {
 				}
 				
 				if(!isLogin){
-					request.setAttribute("isLogin", false);
+					request.setAttribute("isLogin", "false");
 					request.setAttribute("samePwd", samePwd);
 					request.setAttribute("hasUsername", hasUsername);
 					request.getRequestDispatcher("/user/login.jsp").forward(request, response);

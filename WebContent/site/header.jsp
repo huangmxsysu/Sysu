@@ -3,6 +3,20 @@
   <div class = "headerbar">
   
   <% 
+     
+  HttpServletRequest req = (HttpServletRequest) request ;
+	
+	
+	Cookie[] cookies = req.getCookies();
+	String emailCookie=null;
+	for(Cookie cookie:cookies){
+		if("LOGIN_NAME".equals(cookie.getName())){
+			System.out.println("header.jsp:   LOGIN_NAME == cookie.getName   value ==" + cookie.getValue());
+			System.out.println("cookie剩下" + cookie.getMaxAge() + "秒");
+	
+		}
+	}
+	
   	 Boolean isLogin=(Boolean)session.getAttribute("isLogin");
      String username=(String)session.getAttribute("username");
   %>

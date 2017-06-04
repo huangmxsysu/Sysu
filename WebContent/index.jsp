@@ -1,7 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*,xianzhi.tools.*,javax.servlet.http.HttpSession"%>
+<%@ page import="java.sql.*"%>
 <%
+HttpServletRequest req = (HttpServletRequest) request ;
+
+
+Cookie[] cookies = req.getCookies();
+String emailCookie=null;
+for(Cookie cookie:cookies){
+	if("LOGIN_NAME".equals(cookie.getName())){
+		System.out.println("header.jsp:   LOGIN_NAME == cookie.getName   value ==" + cookie.getValue());
+		System.out.println("cookie剩下" + cookie.getMaxAge() + "秒");
+	}
+}
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>

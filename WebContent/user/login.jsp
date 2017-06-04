@@ -51,7 +51,7 @@
 		<% 
 		} 
 		%>
-   <%if(request.getAttribute("isLogin")!=null){%>
+   <%if(request.getAttribute("isLogin")!=null&& request.getAttribute("isLogin").equals("false")){%>
    			<div class = "myinfo-danger">
 		<%if(!request.getAttribute("samePwd").equals("")){
 		    out.print(request.getAttribute("samePwd")+"<br />");}
