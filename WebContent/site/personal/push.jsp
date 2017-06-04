@@ -23,14 +23,35 @@
 <div></div>
 <label for = "content-goods">物品简介：</label>
 <div></div>
-<textarea rows = "5" id = "content-goods" name = "content-goods"></textarea>
+<textarea rows = "3" id = "content-goods" name = "content-goods"></textarea>
 <div></div>
 <label for = "img-goods">物品图片：</label>
 <div></div>
-<input type = "file" id = "img-goods" name = "img-goods"/>
+<input type = "file" id = "img-goods" name = "file"/>
 <div></div>
 <button type = "submit">提交</button>
 </form>
+
+<%
+ if(request.getAttribute("isCheck")!=null){%>
+ <div class="myinfo-danger">
+ <%
+ if(request.getAttribute("nameCheck")!=null&&!request.getAttribute("nameCheck").equals("")){
+	 out.print(request.getAttribute("nameCheck"));
+	 
+ };if(request.getAttribute("quantityCheck")!=null&&!request.getAttribute("quantityCheck").equals("")){
+	 out.print(request.getAttribute("quantityCheck"));
+	 
+ }if(request.getAttribute("contentCheck")!=null&&!request.getAttribute("contentCheck").equals("")){
+	 out.print(request.getAttribute("contentCheck"));
+	 
+ }
+ if(request.getAttribute("fileCheck")!=null&&!request.getAttribute("fileCheck").equals("")){
+	 out.print(request.getAttribute("fileCheck"));
+	 
+ }
+ %></div>
+ <% }%>
 </div>
 
 

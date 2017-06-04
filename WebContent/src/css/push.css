@@ -47,6 +47,7 @@
   margin-left: -1px;
   margin-right:-1px;
   margin-top:10px;
+  margin-bottom:10px;
   cursor: pointer;
   color:#fff;
   outline-width:1px;
@@ -57,4 +58,21 @@
 
 input[type="file"]{
   border:none;
+}
+
+.myinfo-success,.myinfo-danger{
+  margin-top:10px;
+  padding:10px 0px;
+  opacity: 0.7;
+  border-radius: 10px;
+  color:#fff;
+  margin-left:30px;
+  margin-right: 30px;
+}
+.myinfo-success{
+  background-color: #66CC99;
+}
+.myinfo-danger{
+
+  background-color: #CC6666;
 }
