@@ -64,5 +64,19 @@ public class UserDaoProxy implements IUserDao {
 		// TODO Auto-generated method stub
 		return user;
 	}
+	
+	@Override
+	public User findByUsername(String str) throws Exception {
+		User user = null ;
+		try{
+			user = this.dao.findByUsername(str) ;
+		}catch(Exception e){
+			throw e ;
+		}finally{
+			this.dbc.close() ;
+		}
+		// TODO Auto-generated method stub
+		return user;
+	}
 
 }

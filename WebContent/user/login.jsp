@@ -25,12 +25,12 @@
   <div class="box">
     <div class="pad">
       <div class="form-header">登陆界面</div>
-      <form class = "myform" action="#" >
+      <form class = "myform" action="/Sysu/LoginServlet" Method="Post" >
         <label for="username">账号：</label>
-        <input type = "text" id = "username" placeholder="邮箱地址" required/>
+        <input type = "text" id = "username" name = "username" placeholder="邮箱地址" required/>
         <div></div>
         <label for="password">密码：</label>
-        <input tpye = "text" id = "password" placeholder="密码" required/>
+        <input tpye = "text" id = "password" name = "password" placeholder="密码" required/>
         <button type = "submit">登陆</button>
       </form>
 

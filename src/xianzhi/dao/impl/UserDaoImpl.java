@@ -68,4 +68,24 @@ public class UserDaoImpl implements IUserDao{
 		this.pstmt.close() ;
 		return user ;
 	}
+	
+	public User findByUsername(String str) throws Exception{
+		User user = null ;
+		
+		String sql = "SELECT id,username,password,name,stu_num FROM user WHERE username=?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setString(1,str) ;
+		ResultSet rs = this.pstmt.executeQuery() ;
+		if(rs.next()){
+			user = new User() ;
+			user.setId(rs.getInt(1)) ;
+			user.setUsername(rs.getString(2)) ;
+			user.setPassword(rs.getString(3)) ;
+			user.setName(rs.getString(4)) ;
+			user.setStu_num(rs.getString(5)) ;
+		}
+		this.pstmt.close();
+		return user ;
+	}
+	
 }

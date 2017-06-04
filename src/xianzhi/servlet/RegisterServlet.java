@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import xianzhi.factory.DaoFactory;
 import xianzhi.models.User;
+import xianzhi.models.MD5;
 /**
  * Servlet implementation class RegisterServlet
  */
@@ -46,48 +47,77 @@ public class RegisterServlet extends HttpServlet {
 		
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
+		String repeat_password = request.getParameter("repeat_password");
 		String stu_num=request.getParameter("stu_num");
 		String name=request.getParameter("name");
-		System.out.println(name);
 		User user=new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setStu_num(stu_num);
-		user.setName(name);
-		user.setId(1);
-		boolean isRegister=false;
-		try {
-			if(DaoFactory.getIUserDAOInstance().doCreate(user)){
-				isRegister = true;
-				System.out.println("registerTest dao!");
+		
+		
+		
+		try{
 				
+			//if(username.matches("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")&&((DaoFactory.getIUserDAOInstance().findByUsername(username))==null)){
+			//为了方便暂时不要考虑邮箱格式
+			if((DaoFactory.getIUserDAOInstance().findByUsername(username))==null){
 				
-				List<User> all = DaoFactory.getIUserDAOInstance().findAll("") ;
-				Iterator<User> iter = all.iterator() ;
-				User emp = null ;
-				while(iter.hasNext()){
-					emp = iter.next() ;
-					System.out.println(emp.getId() + "-->" + emp.getUsername() + " --> " + emp.getPassword() + " --> " + emp.getName() + " --> " + emp.getStu_num()) ;
+				if(password.matches("[A-Za-z0-9]{3,}")){
+						
+					if(repeat_password.equals(password)){
+						
+					
+						password=MD5.getMD5(MD5.getMD5(password));
+						user.setUsername(username);
+						user.setPassword(password);
+						user.setStu_num(stu_num);
+						user.setName(name);
+						user.setId(1);
+						boolean isRegister=false;
+			
+						if(DaoFactory.getIUserDAOInstance().doCreate(user)){
+							isRegister=true;
+							System.out.println("register dao!");
+							
+							
+							List<User> all = DaoFactory.getIUserDAOInstance().findAll("") ;
+							Iterator<User> iter = all.iterator() ;
+							User emp = null ;
+							while(iter.hasNext()){
+								emp = iter.next() ;
+								System.out.println(emp.getId() + "-->" + emp.getUsername() + " --> " + emp.getPassword() + " --> " + emp.getName() + " --> " + emp.getStu_num()) ;
+							}
+						}
+			
+						request.setAttribute("info",isRegister);
+						System.out.println("isRegister ==== " + isRegister);
+						if(isRegister){
+							request.getRequestDispatcher("/user/login.jsp").forward(request,response);
+						}
+						else{
+							request.getRequestDispatcher("/user/register.jsp").forward(request,response);
+						}
+						
+					}
+					
+					else{
+						
+						System.out.println("password!=repeat_password");
+						request.getRequestDispatcher("/user/register.jsp").forward(request,response);
+					}
 				}
+				else{
+					System.out.println("password不符合格式");//password不符合格式
+					request.getRequestDispatcher("/user/register.jsp").forward(request,response);
+				}
+				
+			}
+			else{
+				System.out.println("email不符合email格式");//username不符合email格式
+				request.getRequestDispatcher("/user/register.jsp").forward(request,response);	
 			}
 			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		request.setAttribute("info",isRegister);
-		System.out.println("isRegister ==== " + isRegister);
-		if(isRegister){
-			
-			//注意：这里user前要加"/"
-			request.getRequestDispatcher("/user/login.jsp").forward(request,response);
-		}
-		 else{
-		 	request.getRequestDispatcher("/user/register.jsp").forward(request,response);
-		}
-		 
-		 
 	}
 
 }
