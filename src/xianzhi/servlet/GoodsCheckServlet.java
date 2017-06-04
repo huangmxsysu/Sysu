@@ -3,6 +3,7 @@ package xianzhi.servlet;
 
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
@@ -15,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+
+import xianzhi.dbHandle.GoodsHandle;
+import xianzhi.models.Goods;
 /**
  * Servlet implementation class GoodsCheckServlet
  */
@@ -70,20 +74,53 @@ public class GoodsCheckServlet extends HttpServlet {
           		
           		    if(goodsContent!=null&&(!goodsContent.equals(""))){
                       	 if(part.getSize()!=0){
-                      	goodsQuantity= Integer.parseInt(getForm(request,"quantity-goods"));
-                      		request.setAttribute("isCheck", true);
-                      		 System.out.println("yes====");
-                      		    //把文件写到指定路径
-//                      	        part.write(savePath+File.separator+fileName);
-//                      	        if(true/*suc*/){
-//                      	        	/*jump1*/
-//                      	        }else{
-//                      	        	request.setAttribute("info", "error");
-//                      	        	/*jump2*/
-//                      	        }
-                      		 
-                      		request.getRequestDispatcher("/index.jsp").forward(request, response);
-//                      	     
+                      		 goodsQuantity= Integer.parseInt(getForm(request,"quantity-goods"));
+                     		  Goods good=new Goods();
+                     		  good.setName(goodsName);
+                     		  good.setContent(goodsContent);
+                     		  good.setNum(goodsQuantity);
+                     		 
+                     		  request.setAttribute("isCheck", true);
+                     		  boolean flag =false;
+                 
+							  int maxid=0;
+							  FileOutputStream fos=null;
+								try {
+										GoodsHandle goodsHandle=new GoodsHandle();
+										maxid = goodsHandle.getMaxId();
+									    good.setId(maxid+1);
+									     
+									    int id= good.getId(); 
+									     
+						
+						                byte[] bt=new byte[(int)part.getSize()];
+						                int len;
+						        
+								        String    imagePathName1= savePath+"\\"+id+".jpg";
+								                //  System.out.println(imagePathName1);
+								        String   imagePathName=  imagePathName1.replace('\\','/');
+						                 // System.out.println(imagePathName);
+						                good.setImage("/static/goods_img/"+id+".jpg");
+						                fos=new FileOutputStream(imagePathName);
+						                  
+						                  
+						                part.getInputStream().read(bt);
+						                fos.write(bt);
+						                goodsHandle.doCreateGoods(good);
+						                  
+						                    
+						                System.out.println("yes");
+						                request.getRequestDispatcher("/index.jsp").forward(request, response);
+					     			     
+					     			} catch (Exception e) {
+					     				// TODO Auto-generated catch block
+					     				e.printStackTrace();
+					     			}finally{
+					     				if(fos!=null){
+					     				fos.close();
+					     				}
+					     			}  
+                      
                          	
                          	
                          } else{
