@@ -29,7 +29,9 @@ public class outLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getSession().setAttribute("isLogin", false);
+		request.getSession().setAttribute("isLogined", false);
+		request.getSession().setAttribute("UserNameOrName",null);
+		request.getSession().setAttribute("LoginUser",null);
 		//request.getRequestDispatcher("/index.jsp").forward(request, response);
 		Cookie[] cookies=request.getCookies();
 			for(int i=0;i<cookies.length;++i){

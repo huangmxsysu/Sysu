@@ -25,8 +25,8 @@
 <div></div>
 <textarea rows = "3" id = "content-goods" name = "content-goods"></textarea>
 <div></div>
-<label for = "img-goods">选择一个分类：</label>
- <select >
+<label for = "type_id-goods">选择一个分类：</label>
+ <select name = "type_id-goods" >
 	 <option value="other">其他</option>
 	 <option value="book">书籍</option>
 	 <option value="live">生活出行</option>
@@ -44,6 +44,13 @@
 <button type = "submit">提交</button>
 </form>
 
+<%
+ if(request.getParameter("info")!=null && !request.getParameter("info").equals("")){%>
+ 	<div class="myinfo-success">
+ 	<%out.print(new String(request.getParameter("info").getBytes("ISO8859-1"),"UTF-8"));%>
+ 	</div>
+<%}%>
+ 
 <%
  if(request.getAttribute("isCheck")!=null){%>
  <div class="myinfo-danger">

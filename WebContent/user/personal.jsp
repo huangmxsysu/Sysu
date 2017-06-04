@@ -9,7 +9,13 @@
 %>
 
 <%
- if(request.getParameter("userid")==null && session.getAttribute("isLogin").equals(false)){
+ 
+ if(request.getParameter("user").equals("0")) System.out.println("personal:   user==0");
+ else System.out.println("personal:   user!==0");
+ if((session.getAttribute("isLogined") == null) || ((Boolean)session.getAttribute("isLogined") == false) ) System.out.println("personal:   isLogined==false");
+ else System.out.println("personal:   isLogined==true");
+ if(request.getParameter("user").equals("0")){
+	 System.out.println("redirect!!!");
 	 response.sendRedirect("login.jsp?login-info="+java.net.URLEncoder.encode("请先登录网站","UTF-8"));
  }
 %>
@@ -46,26 +52,35 @@
 
 
       </div>
-          <a href="user/personal.jsp?tab=info" id = "personal_item" ><div id = "item">个人信息</div></a>
+      	  <!-- 此时进入personal界面时候LoginUser一定存在 -->
+      	  <%int userId = 0;
+      	  if(((User) session.getAttribute("loginUser")) != null){
+      		  userId = ((User) session.getAttribute("loginUser")).getId();
+      	  }
+          %> 
+      	  
+      	  
+      	  
+          <a href="user/personal.jsp?user=<%=userId %>&tab=info" id = "personal_item" ><div id = "item">个人信息</div></a>
 	      <div class = "side-seperator"></div>
-	      <%if((session.getAttribute("isLogin").equals(true))){%>
-				<%if(((User) session.getAttribute("loginUser")).getId()<1000){%>
-				<a href="user/personal.jsp?tab=auditing" id = "personal_item" ><div id = "item">物品审核</div></a>
+	      <%if((session.getAttribute("isLogined") !=null) && ( (Boolean) session.getAttribute("isLogined")).equals(true)){%>
+				<%if( ((User) session.getAttribute("loginUser")) != null && ((User) session.getAttribute("loginUser")).getId()<1000){%>
+				<a href="user/personal.jsp?user=<%=userId %>&tab=auditing" id = "personal_item" ><div id = "item">物品审核</div></a>
 				<div class = "side-seperator"></div>
 				<%}%>
  
 	
-		      <a href="user/personal.jsp?tab=push" id = "personal_item" ><div id = "item">发布商品</div></a>
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=push" id = "personal_item" ><div id = "item">发布商品</div></a>
 		      <div class = "side-seperator"></div>
 		
-		      <a href="user/personal.jsp?tab=history&page=1" id = "personal_item" ><div id = "item">购买历史</div></a>
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=history&page=1" id = "personal_item" ><div id = "item">购买历史</div></a>
 		      <div class = "side-seperator"></div>
 		
 		
-		      <a href="user/personal.jsp?tab=like&page=1" id = "personal_item" ><div id = "item">收藏夹</div></a>
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=like&page=1" id = "personal_item" ><div id = "item">收藏夹</div></a>
 		      <div class = "side-seperator"></div>
 		
-		      <a href="user/personal.jsp?tab=setting"  id = "personal_item" ><div id = "item">设置</div></a>
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=setting"  id = "personal_item" ><div id = "item">设置</div></a>
 		      <div class = "side-seperator"></div>
 	      
 	      <%}%>

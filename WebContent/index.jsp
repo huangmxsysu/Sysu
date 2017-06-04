@@ -24,10 +24,23 @@
   <body>
   
  <%
- Boolean isLogin=(Boolean)session.getAttribute("isLogin");
+ Boolean isLogined=(Boolean)session.getAttribute("isLogined");
  String username=(String)session.getAttribute("UserNameOrName");
  User user=(User)session.getAttribute("loginUser"); 
- System.out.println("getUser"+user.getId());
+
+ if(isLogined==null){
+	 System.out.println("初始isLogined为空");
+ }
+ else{
+	 System.out.println(isLogined);
+ }
+ if(username==null){
+	 System.out.println("初始username为空");
+ }
+ else{
+	 System.out.println(username);
+ }
+ /* System.out.println("getUser"+user.getId()); */
  
  %>
     <%--引入导航部分 --%>
@@ -83,23 +96,29 @@
     <div class = "pad">
     
       <div class = "side-header">
-      <%if (isLogin!=null&&isLogin==true){%>
+      <%if (isLogined!=null&&isLogined==true){%>
     	  <%= username %>
     <%}else{ %>
     	  个人
       <%} %>
       </div>
-
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=info" id = "item-name" >个人中心</a></div>
+      <% 
+         String temppath = "user/personal.jsp?user=";
+      	 if(isLogined==null || isLogined==false) temppath += "0";
+      	 else temppath += user.getId();
+      	 System.out.println(temppath);
+      %>
+      
+      <div class = "side-item"><a href ="<%=temppath %>&tab=info" id = "item-name" >个人中心</a></div>
       <div class = "side-seperator"></div>
       
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=push" id = "item-name" >发布商品</a></div>
+      <div class = "side-item"><a href ="<%=temppath %>&tab=push" id = "item-name" >发布商品</a></div>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=setting" id = "item-name" >设置</a></div>
+      <div class = "side-item"><a href ="<%=temppath %>&tab=setting" id = "item-name" >设置</a></div>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "user/personal.jsp?user=<%=user.getId()%>&tab=message" id = "item-name" >我的消息</a><span>5</span></div>
+      <div class = "side-item"><a href ="<%=temppath %>&tab=message" id = "item-name" >我的消息</a><span>5</span></div>
       <div class = "side-seperator"></div>
 
     </div>

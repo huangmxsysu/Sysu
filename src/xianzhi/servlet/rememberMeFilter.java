@@ -63,20 +63,34 @@ public class rememberMeFilter implements Filter {
 					         }
 					     	ses.setAttribute("loginUser",user);
 							ses.setAttribute("UserNameOrName", UserNameOrName);
-							ses.setAttribute("isLogin", true);
+							ses.setAttribute("isLogined", true);
+							System.out.println("filtered!");
+							if(user==null){
+								System.out.println("user is null");
+							}
+							System.out.println("UserNameOrName="+UserNameOrName + " isLogin="+true);
 					 	}
+					 	System.out.println("findByUsername(emailCookie) == null");
 					} catch (Exception e) {
 									// TODO: handle exception
+						e.printStackTrace();
 							}
 					System.out.println("Filter:   LOGIN_NAME == cookie.getName   value ==" + cookie.getValue());
 					System.out.println("cookie剩下" + cookie.getMaxAge() + "秒");
 
 				}
+				else{
+					System.out.println("LOGIN_NAME not in cookie");
+				}
 			}
+			
 		}
-
+		else{
+		System.out.println("cookie is null");
+		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
+		
 	}
 
 	/**

@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String hasUsername = "";
 		String samePwd = "";
-		Boolean isLogin = false;
+		Boolean isLogined = false;
 
 		UserDbHandle userDbHandle = new UserDbHandle();
 		
@@ -64,8 +64,8 @@ public class LoginServlet extends HttpServlet {
                     String pass=	MD5.getMD5(MD5.getMD5(password));
 					if(user.getPassword().equals(pass)){
 			
-						   String checkstate="sysu";
-						   checkstate =(String)request.getParameter("remember_me");
+						   
+						   String checkstate =(String)request.getParameter("remember_me");
 							  
 							   if(checkstate!=null&&checkstate.equals("on")){
 								   Cookie cookie=new Cookie("LOGIN_NAME",username);
@@ -83,13 +83,13 @@ public class LoginServlet extends HttpServlet {
 									 }
 								session.setAttribute("UserNameOrName", UserNameOrName);
 								session.setAttribute("loginUser",user);
-								session.setAttribute("isLogin", true);
+								session.setAttribute("isLogined", true);
 									 
 								request.getRequestDispatcher("/index.jsp").forward(request, response);
 								
 								
 						System.out.println("密码正确，登陆成功！");
-						isLogin = true;
+						isLogined = true;
 					}
 					else{
 						System.out.println("密码不一致，请核对");	
@@ -102,8 +102,8 @@ public class LoginServlet extends HttpServlet {
 					hasUsername = "用户名不存在，请先注册";			
 				}
 				
-				if(!isLogin){
-					request.setAttribute("isLogin", "false");
+				if(!isLogined){
+					request.setAttribute("LoginState", "false");
 					request.setAttribute("samePwd", samePwd);
 					request.setAttribute("hasUsername", hasUsername);
 					request.getRequestDispatcher("/user/login.jsp").forward(request, response);

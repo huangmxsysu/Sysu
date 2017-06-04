@@ -17,7 +17,7 @@
 		}
 	} */
 	
-  	 Boolean isLogin=(Boolean)session.getAttribute("isLogin");
+  	 Boolean isLogined=(Boolean)session.getAttribute("isLogined");
      String username=(String)session.getAttribute("UserNameOrName");
      /* User user=(User)session.getAttribute("loginUser");
      System.out.println("heaer.jsp: "+user.getName()); */
@@ -27,7 +27,7 @@
     <div class="header-link">
       <a href = "#" class="link-item">我的收藏</a>
       <a href = "#" class="link-item">购物车(0)</a>
-       <%if (isLogin!=null&&isLogin==true){
+       <%if (isLogined!=null&&isLogined==true){
             %>
             <a href = "/Sysu/outLoginServlet" class = "link-item">退出登陆</a>
             <a href = "#" class="link-item"><%=username%></a>
