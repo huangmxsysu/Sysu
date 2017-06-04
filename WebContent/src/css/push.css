@@ -1,0 +1,60 @@
+
+.push_pad{
+  padding:20px;
+  border:1px solid #ddd;
+  text-align: center;
+
+}
+.push_pad *{
+  box-sizing: border-box;
+
+}
+.myform{
+  text-align: center;
+}
+.form-header{
+
+  border-bottom: 3px solid #669999;
+  width:100%;
+  color:#669999;
+  padding-right:10px;
+  padding-bottom: 20px;
+  margin:0 auto 10px;
+}
+
+.myform label{
+  color:#777;
+}
+.myform input,textarea{
+  position:relative;
+  padding:5px;
+  outline-width: 1px;
+  outline-color: #339966;
+  margin-top:10px;
+  margin-bottom: 10px;
+  min-width:70%;
+  border:1px solid #ccc;
+
+}
+.myform input{
+  height:30px;
+}
+
+.myform button{
+  width:100%;
+  height:40px;
+  border:none;
+  margin-left: -1px;
+  margin-right:-1px;
+  margin-top:10px;
+  cursor: pointer;
+  color:#fff;
+  outline-width:1px;
+  outline-color: #339966;
+  font-size:1em;
+  background-color: #669999;
+}
+
+input[type="file"]{
+  border:none;
+}

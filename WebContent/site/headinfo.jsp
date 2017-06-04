@@ -8,4 +8,3 @@
 <script src="<%=basePath%>src/jquery2/jquery.min.js"></script>
 <script src="<%=basePath%>src/bootstrap3/js/bootstrap.min.js"></script>
 <link href="<%=basePath%>src/css/index.css" rel="stylesheet">
-<link href="<%=basePath%>src/css/main.css" rel="stylesheet">

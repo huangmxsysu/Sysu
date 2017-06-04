@@ -1,0 +1,90 @@
+  .personal_side{
+    float:left;
+
+    height:400px;
+    width:300px;
+    margin-left:20px;
+
+  }
+  .personal_header{
+    background-color: #669999;
+    height:150px;
+    position:relative;
+    text-align:center;
+    color:#fff;
+  }
+  .personal_imgbox{
+    position:absolute;
+    border:1px solid #fff;
+    width:100px;
+    height:100px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius: 50%;
+
+
+  }
+ .personal_imgbox img{
+  	width:100px;
+  	height:100px;
+  	border-radius:50%;
+  }
+  .personal_info{
+    position:absolute;
+    top:130px;
+    left:50%;
+    transform: translateX(-50%);
+    width:100%;
+    line-height:2em;
+
+  }
+  
+
+  .personal_pad{
+    position: relative;
+     border:1px solid #ddd;
+     box-shadow: 1px 1px 1px 1px #eee;
+   }
+
+   #personal_item {
+     line-height: 35px;
+     position:relative;
+     width:100%;
+     display:inline-block;
+     color:#555;
+	 text-align:center;
+     text-decoration: none;
+
+   }
+    #personal_item:hover{
+     background-color: #eee;
+   }
+   #personal_item span{
+     box-sizing: border-box;
+     position:absolute;
+     margin-top:9px;
+     background-color: #bbb;
+     width:20px;
+     height:20px;
+     right:10px;
+     color: white;
+     line-height: 30px;
+     border-radius:50%;
+     text-align: center;
+     line-height:20px;
+
+   }
+   #personal_item #item{
+     margin-left:20px;
+   }
+ .personal_content{
+ 	 
+ 	 
+      margin-right:20px;
+      margin-left:380px;
+      margin-top:30px;
+
+      border:1px solid #eee;
+
+    }

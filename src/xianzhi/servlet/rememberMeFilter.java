@@ -61,6 +61,7 @@ public class rememberMeFilter implements Filter {
 					 	     }else{
 					 	    	UserNameOrName=user.getUsername();
 					         }
+//					     	ses.setAttribute("loginUser",user);
 							ses.setAttribute("UserNameOrName", UserNameOrName);
 							ses.setAttribute("isLogin", true);
 					 	}

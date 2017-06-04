@@ -17,7 +17,8 @@ public class UserDbHandle{
 	    	this.conn=new DatabaseConnection().getConnection();
 	    } catch (Exception e) {
 		 		// TODO: handle exception
-	    	}
+	    	e.printStackTrace();
+	    }
     }
 	
 	public boolean doCreate(User user) throws Exception{

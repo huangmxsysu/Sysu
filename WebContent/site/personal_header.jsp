@@ -23,10 +23,7 @@
      System.out.println("heaer.jsp: "+user.getName()); */
   %>
     <div class = "main-icon"><a href = "#">Sysu闲置</a></div>
-    <div class = "search-box">
-        <input type="text" id = "search-text" name = "search-text" placeholder = "关键字">
-        <button class="search-icon">搜索</button>
-    </div>
+
     <div class="header-link">
       <a href = "#" class="link-item">我的收藏</a>
       <a href = "#" class="link-item">购物车(0)</a>
