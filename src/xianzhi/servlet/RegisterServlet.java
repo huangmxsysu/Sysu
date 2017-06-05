@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import xianzhi.models.User;
 import xianzhi.tools.MD5;
-import xianzhi.dbHandle.UserDbHandle;
+import xianzhi.dbHandle.UserHandle;
 /**
  * Servlet implementation class RegisterServlet
  */
@@ -56,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
 		String isPwdSame="";
 		String isPwd="";
 		String isEmail="";
-		UserDbHandle userDbHandle= new UserDbHandle();
+		UserHandle userDbHandle= new UserHandle();
 		
 		
 		try{

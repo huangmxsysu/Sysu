@@ -1,6 +1,7 @@
 package xianzhi.models;
 
 import java.awt.Image;
+import java.util.Date;
 
 public class Goods {
 	private Integer id;
@@ -12,6 +13,15 @@ public class Goods {
 	private String content;//
 	private Integer producter_id;
 	private Integer states;
+	private Date creatDate;
+	
+	//10个字段
+	public Date getCreatDate() {
+		return creatDate;
+	}
+	public void setCreatDate(Date creatDate) {
+		this.creatDate = creatDate;
+	}
 	public Integer getId() {
 		return id;
 	}

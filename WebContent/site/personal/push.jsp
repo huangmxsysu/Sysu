@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isThreadSafe="false"%>
     
 <%
    String path = request.getContextPath();
@@ -46,17 +46,31 @@
 
 <%
 
- if(request.getParameter("info")!=null && !request.getParameter("info").equals("")){%>
+ if(request.getParameter("info")!=null && !request.getParameter("info").equals("")){
+ 
+ 	if(request.getParameter("success")!=null && request.getParameter("success").equals("1") ){
+ %>
  	<div class="myinfo-success">
  	<%
  	request.setCharacterEncoding("utf-8");
  	out.print(request.getParameter("info"));
  	%>
  	</div>
-<%}%>
+<%}else{%>
+    <!-- 数据库异常 -->
+ 	<div class="myinfo-danger">
+ 	<%
+ 	request.setCharacterEncoding("utf-8");
+ 	out.print(request.getParameter("info"));
+ 	%>
+ 	</div>
+ 	<%} %>
+<%} %>
+
+
  
 <%
- if(request.getAttribute("isCheck")!=null){%>
+ if(request.getParameter("seccess")!=null && request.getParameter("seccess").equals("0") && request.getAttribute("isCheck")!=null){%>
  <div class="myinfo-danger">
  <%
  if(request.getAttribute("nameCheck")!=null&&!request.getAttribute("nameCheck").equals("")){

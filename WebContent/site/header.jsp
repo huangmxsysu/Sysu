@@ -35,7 +35,7 @@
     <div class="header-link">
       <a href = "<%=temppath %>&tab=like&page=1" class="link-item">我的收藏</a>
       <a href = "<%=temppath %>&tab=shopcart" class="link-item">购物车(0)</a>
-       <%if (isLogined!=null&&isLogined==true){
+       <%if (isLogined!=null && user!=null &&isLogined==true){
             %>
             <a href = "/Sysu/outLoginServlet" class = "link-item">退出登陆</a>
             <a href = "<%=temppath %>&tab=info" class="link-item"><%=username%></a>

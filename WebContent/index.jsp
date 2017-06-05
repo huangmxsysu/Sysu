@@ -1,6 +1,8 @@
+<%@page import="xianzhi.dbHandle.UserHandle"%>
+<%@page import="org.w3c.dom.UserDataHandler"%>
+<%@page import="xianzhi.dbHandle.GoodsHandle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="javax.servlet.http.HttpSession,xianzhi.models.*,xianzhi.tools.*"%>
-<%@ page import="java.sql.*"%>
+    pageEncoding="UTF-8" import="java.sql.*,java.util.*,javax.servlet.http.HttpSession,xianzhi.models.*,xianzhi.tools.*"%>
 <%
    String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -128,8 +130,73 @@
     </div>
   </div>
 
-<jsp:include page="site/main.jsp" />
+			
+			
+<%-- <jsp:include page="site/main.jsp" /> --%>
+<!-- INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '4', '笔记本', '1', '4000', '2', '二手笔记本，8成新，I7处理器', 2', '2015-12-12 12:10:10');
+INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '2', '2015-12-16 02:34:01');
+INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '2', '二手自行车', '2', '2015-12-11 11:22:33');
+INSERT INTO `goods` VALUES ('4', 'static/goods_img/4.jpg', '5', '网球拍', '1', '50', '2', '二手网球拍，用过几天，九成新', '1', '2015-12-17 11:00:16');
+INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '80', '2', '全牛皮篮球，', '1', '2015-12-17 11:02:57'); -->
 
+	<div class = "content">
+	
+			<% 
+			
+				GoodsHandle goods=new GoodsHandle();
+				UserHandle users =new UserHandle();
+				System.out.println("初始化数据库 before findAll()");
+			      List <Goods> list=goods.findAll();
+			     System.out.println("after findAll()");
+				 System.out.println(list.size());
+			      if(list.size()!=0){
+			    	System.out.println("size!=0");
+			    	  for(Goods good:list){
+			    	System.out.println("producter_id="+good.getProducter_id());	
+			    	System.out.println(" before users.findById()");
+			    	User USER = users.findById(good.getProducter_id());
+			    	System.out.println("after findById");
+			      
+			        
+
+			   %>
+	
+				    <div class="product_box">
+			        <div class="img_box">
+			          <img src="<%=good.getImage()%>" alt=""/>
+			        </div>
+			        <div class="content_box">
+			          <div class="product_title">
+			            <a href="#"><%=good.getName()%></a>
+			          </div>
+			          <div class="productor">发布者：<span><a href = "#"><%if(USER.getName()!=null){ %><%=USER.getName() %><%}else{%><%=USER.getUsername()%><%}%> </a></span></div>
+			          <div class = "product_time">时间：<%=good.getCreatDate()%></div>
+			        </div>
+			      </div>
+			      <div class = "side-seperator"></div>
+      		<%	  
+			    	  }
+			    	  
+			      }
+			%>
+
+      
+
+<!-- 		      <div class="product_box">
+		        <div class="img_box">
+		          <img src="static/user_img/user1.png" alt=""/>
+		        </div>
+		        <div class="content_box">
+		          <div class="product_title">
+		            <a href="#">甩卖自用固态硬盘(电子产品)</a>
+		          </div>
+		          <div class="productor">发布者：<span><a href = "#">黄木旋</a></span></div>
+		          <div class = "product_time">时间：2015-08-23 00:04:23</div>
+		        </div>
+		      </div>
+		
+			<div class = "side-seperator"></div> -->
+	</div>
   </div>
 
 

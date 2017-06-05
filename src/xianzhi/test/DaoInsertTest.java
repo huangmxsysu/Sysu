@@ -14,7 +14,7 @@ public class DaoInsertTest {
 	 */
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		UserDbHandle userDbHandle= new UserDbHandle();
+		UserHandle userDbHandle= new UserHandle();
 		User emp = null ;
 		for(int x=0;x<5;x++){
 			emp = new User() ;

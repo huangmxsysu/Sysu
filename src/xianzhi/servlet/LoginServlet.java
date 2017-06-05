@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 		String samePwd = "";
 		Boolean isLogined = false;
 
-		UserDbHandle userDbHandle = new UserDbHandle();
+		UserHandle userDbHandle = new UserHandle();
 		
 		String UserNameOrName="";
 			try {
@@ -70,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 							   if(checkstate!=null&&checkstate.equals("on")){
 								   Cookie cookie=new Cookie("LOGIN_NAME",username);
 								   cookie.setMaxAge(30);
+								   cookie.setDomain("/");
 								   response.addCookie(cookie);
 								   System.out.println("LoginServlet:   remember on! add Cookie.name=" + cookie.getName() + " Cookie.value =" + cookie.getValue());
 								   }
@@ -84,9 +85,9 @@ public class LoginServlet extends HttpServlet {
 								session.setAttribute("UserNameOrName", UserNameOrName);
 								session.setAttribute("loginUser",user);
 								session.setAttribute("isLogined", true);
-									 
-								request.getRequestDispatcher("/index.jsp").forward(request, response);
-								
+								session.setAttribute("userid", user.getId());	 
+//								request.getRequestDispatcher("/index.jsp").forward(request, response);
+								response.sendRedirect("index.jsp");
 								
 						System.out.println("密码正确，登陆成功！");
 						isLogined = true;
@@ -106,7 +107,7 @@ public class LoginServlet extends HttpServlet {
 					request.setAttribute("LoginState", "false");
 					request.setAttribute("samePwd", samePwd);
 					request.setAttribute("hasUsername", hasUsername);
-					request.getRequestDispatcher("/user/login.jsp").forward(request, response);
+					request.getRequestDispatcher("user/login.jsp").forward(request, response);
 				}
 			} catch (Exception e) {
 			

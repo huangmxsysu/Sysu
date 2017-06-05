@@ -51,3 +51,16 @@
   .mybtn-success{
     background-color: #669999;
   }
+  
+  .flag-success,.flag-danger{
+    background-color: #669999;
+    padding:4px 6px;
+    color:#fff;
+    height:20px;
+    line-height:20px;
+    border-radius: 5px;
+  }
+  
+    .flag-danger{
+    background-color: #CC6666;
+  }

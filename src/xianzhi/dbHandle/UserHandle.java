@@ -7,12 +7,12 @@ import xianzhi.models.* ;
 
 import xianzhi.dbc.DatabaseConnection;
 
-public class UserDbHandle{
+public class UserHandle{
 	
 	private Connection conn = null ;
 	private PreparedStatement pstmt = null ;
 
-	public UserDbHandle(){
+	public UserHandle(){
 		try {
 	    	this.conn=new DatabaseConnection().getConnection();
 	    } catch (Exception e) {

@@ -3,6 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*,xianzhi.models.*,xianzhi.tools.*,javax.servlet.http.HttpSession"%>
 <%
+    request.setCharacterEncoding("utf8");
+    response.setCharacterEncoding("utf8");
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     System.out.println("base:"+basePath);
@@ -54,6 +56,7 @@
       	  <%int userId = 0;
       	  if(((User) session.getAttribute("loginUser")) != null){
       		  userId = ((User) session.getAttribute("loginUser")).getId();
+      		  
       	  }
           %> 
       	  

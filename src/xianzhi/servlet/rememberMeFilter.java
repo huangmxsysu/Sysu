@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-import xianzhi.dbHandle.UserDbHandle;
+import xianzhi.dbHandle.UserHandle;
 import xianzhi.models.User;
 
 /**
@@ -47,8 +47,10 @@ public class rememberMeFilter implements Filter {
 		
 		Cookie[] cookies = req.getCookies();
 		String emailCookie=null;
-		UserDbHandle userDbHandle = new UserDbHandle();
+		UserHandle userDbHandle = new UserHandle();
 		String UserNameOrName = "";
+		
+		
 		if(cookies!=null){
 			for(Cookie cookie:cookies){
 				if("LOGIN_NAME".equals(cookie.getName())){
@@ -56,21 +58,27 @@ public class rememberMeFilter implements Filter {
 					 try {
 					 	if (userDbHandle.findByUsername(emailCookie) != null) {
 	  						 User user = userDbHandle.findByUsername(emailCookie);
-					     	 if(user.getName()!=null && !user.getName().equals("")){
-					     	 UserNameOrName=user.getName();
-					 	     }else{
-					 	    	UserNameOrName=user.getUsername();
-					         }
-					     	ses.setAttribute("loginUser",user);
-							ses.setAttribute("UserNameOrName", UserNameOrName);
-							ses.setAttribute("isLogined", true);
-							System.out.println("filtered!");
-							if(user==null){
+	  						if(user!=null)
+							{
+	  							if(user.getName()!=null && !user.getName().equals("")){
+	  						     	 UserNameOrName=user.getName();
+	  						 	     }else{
+	  						 	    	UserNameOrName=user.getUsername();
+	  						         }
+	  							ses.setAttribute("loginUser",user);
+								ses.setAttribute("UserNameOrName", UserNameOrName);
+								ses.setAttribute("isLogined", true);
+								
+								System.out.println("filtered!");
+								
+								
+							}else{
 								System.out.println("user is null");
 							}
+							
 							System.out.println("UserNameOrName="+UserNameOrName + " isLogin="+true);
 					 	}
-					 	System.out.println("findByUsername(emailCookie) == null");
+					 	System.out.println("userDbHandle.findByUsername(emailCookie) == null");
 					} catch (Exception e) {
 									// TODO: handle exception
 						e.printStackTrace();
