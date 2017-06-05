@@ -83,7 +83,7 @@
 		      <a href="user/personal.jsp?user=<%=userId %>&tab=mess"  id = "personal_item" ><div id = "item">消息</div></a>
 		      <div class = "side-seperator"></div>
 		      
-		      <a href="user/personal.jsp?user=<%=userId %>&tab=setting"  id = "personal_item" ><div id = "item">消息</div></a>
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=setting"  id = "personal_item" ><div id = "item">设置</div></a>
 		      <div class = "side-seperator"></div>
 		      
 		      

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="xianzhi.dbHandle.*,xianzhi.models.*,java.sql.*,java.util.*" %>
+<%@ page import="xianzhi.dbHandle.*,xianzhi.models.*,java.sql.*,java.util.*,java.text.SimpleDateFormat" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -38,7 +38,7 @@ function passGoods(goodsid,type){
 
 <table>
     <tr>
-      <th   style="width:10%;">姓名</th>
+      <th   style="width:10%;">用户</th>
       <th  style="width:15%;">发布于</th>
       <th style="width:15%;">物品名</th>
       <th  style="width:25%;">详情</th>
@@ -47,6 +47,7 @@ function passGoods(goodsid,type){
 	<%
 	GoodsHandle goodsHandle=new GoodsHandle();
 	UserHandle userHandle=new UserHandle();
+	try{
 	List<Goods> all = goodsHandle.findAllNotAuditing();
 	if(all==null){
 		System.out.print("cant find anything");
@@ -58,20 +59,29 @@ function passGoods(goodsid,type){
 	
 	<tr>
 	  <td style="width:10%;">
-		<%=userHandle.findById(goods.getProducter_id()).getName()%>
+		<%
+				if(userHandle.findById(goods.getProducter_id()).getName()==null){
+			    out.print(userHandle.findById(goods.getProducter_id()).getUsername());
+				}
+ 			else{
+ 				    out.print(userHandle.findById(goods.getProducter_id()).getName());
+ 				}
+ 				%>
 	  </td>
 	  
 	  <td style="width:15%;">
-		时间
+		<%=new SimpleDateFormat("yyyy/MM/dd HH:mm").format(goods.getCreatDate())%>
 	  </td>
 	  
-	  <td  style="width:15%;">
+	  
+	  <td style="width:15%;">
 		<%=goods.getName()%>
 	  </td>
 	  
-	  <td  style="width:15%;">
+	  <td style="width:15%;">
 		<abbr title="<%=goods.getContent()%>">[详情]</abbr>
 	  </td>
+  
 	  	
 	  <td>
 		<div id="auditing-button-<%=goods.getId()%>">
@@ -82,7 +92,9 @@ function passGoods(goodsid,type){
 	  </tr>
 	
 		<%}%>
-	<%}%>
+	<%}}catch(Exception e){
+    out.print("数据库异常");
+ }%>
 
 </table>
 
