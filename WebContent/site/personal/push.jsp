@@ -17,7 +17,7 @@
 <div></div>
 <input id = "name-goods" name = "name-goods"/>
 <div></div>
-<label for = "quantity-goods">数量：</label>
+<label for = "quantity-goods">价格（元）：</label>
 <div></div>
 <input type = "number" id = "quantity-goods" name = "quantity-goods"/>
 <div></div>

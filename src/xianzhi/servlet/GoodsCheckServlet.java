@@ -97,9 +97,11 @@ public class GoodsCheckServlet extends HttpServlet {
 			
 						User user =(User)request.getSession().getAttribute("loginUser");
 				
-					
+					    
 					    Goods good = new Goods();
 					    good.setType_id(type);
+					    if(user != null)
+					    System.out.println("goodservlet:user.getId()=" + user.getId());
 					    good.setProducter_id(user.getId());
 					    
 						goodsQuantity = Float.parseFloat(getForm(request,
@@ -135,7 +137,9 @@ public class GoodsCheckServlet extends HttpServlet {
 							fos.write(bt);
 
 							Date date=new Date();
+							good.setStates(1);
 							good.setCreatDate(date);
+							good.setNum(1);//修复标记
 							goodsHandle.doCreateGoods(good);
 							
 							

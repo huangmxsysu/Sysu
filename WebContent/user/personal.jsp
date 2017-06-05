@@ -83,6 +83,11 @@
 		      <a href="user/personal.jsp?user=<%=userId %>&tab=mess"  id = "personal_item" ><div id = "item">消息</div></a>
 		      <div class = "side-seperator"></div>
 		      
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=setting"  id = "personal_item" ><div id = "item">消息</div></a>
+		      <div class = "side-seperator"></div>
+		      
+		      
+		      
 		      <%if((session.getAttribute("isLogined") !=null) && ( (Boolean) session.getAttribute("isLogined")).equals(true)){%>
 			  <%if( ((User) session.getAttribute("loginUser")) != null && ((User) session.getAttribute("loginUser")).getId()<1000){%>
 				<a href="user/personal.jsp?user=<%=userId %>&tab=auditing" id = "personal_item" ><div id = "item">物品审核</div></a>

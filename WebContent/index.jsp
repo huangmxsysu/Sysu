@@ -2,7 +2,7 @@
 <%@page import="org.w3c.dom.UserDataHandler"%>
 <%@page import="xianzhi.dbHandle.GoodsHandle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*,java.util.*,javax.servlet.http.HttpSession,xianzhi.models.*,xianzhi.tools.*"%>
+    pageEncoding="UTF-8" import="java.text.SimpleDateFormat,java.sql.*,java.util.*,javax.servlet.http.HttpSession,xianzhi.models.*,xianzhi.tools.*"%>
 <%
    String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -20,6 +20,20 @@
     <title>中山大学-物品交易-首页</title>
     
     <link href="src/css/main.css" rel="stylesheet">
+    <link href = "src/css/pad.css" rel = "stylesheet">
+    <style type="text/css">
+     .content_header{
+
+	  border-bottom: 3px solid #669999;
+	  width:50%;
+	  text-align: center;
+	  color:#669999;
+	  padding-right:10px;
+	  padding-top:10px;
+	  padding-bottom: 20px;
+	  margin:0 auto 15px;
+	}
+    </style>
   </head>
   
   
@@ -50,55 +64,61 @@
 	<jsp:include page="site/header.jsp" />
 
 
-  <div class = "box">
-    <div class = "left-side">
+  <div class = "container">
+ 
+  <div class = "pad_side_left">
 
-    <div class = "pad">
-      <div class = "side-header">分类</div>
-
-      <div class = "side-item"><a href = "#" id = "item-name">电子产品</a><span>2</span></div>
+    <div class = "pad_pad">
+      <div class = "pad_header">
+      分类
+      </div>
+      <a href="index.jsp?ceta=0" id = "pad_item" >全部<span>32</span></a>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "#" id = "item-name" >书籍</a><span>13</span></div>
+      <a href="index.jsp?ceta=1" id = "pad_item" >书籍<span>12</span></a>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "#" id = "item-name" >体育运动</a><span>5</span></div>
+      <a href="index.jsp?ceta=2" id = "pad_item" >生活出行<span>6</span></a>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "#" id = "item-name" >衣物鞋包</a><span>8</span></div>
-      <div class = "side-seperator"></div>
-      
-      <div class = "side-item"><a href = "#" id = "item-name" >生活出行</a><span>6</span></div>
-      <div class = "side-seperator"></div>
-      
-      <div class = "side-item"><a href = "#" id = "item-name" >其他</a><span>11</span></div>
-      <div class = "side-seperator"></div>
-    </div>
-
-
-
-    <div class = "pad">
-      <div class = "side-header">最近发布</div>
-      <div class = "side-item"><a href = "#" id = "item-name" >用户1：物品a</a><span>1</span></div>
+      <a href="index.jsp?ceta=3" id = "pad_item" >衣物鞋包<span>3</span></a>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "#" id = "item-name" >用户2：物品b</a><span>13</span></div>
+      <a href="index.jsp?ceta=4" id = "pad_item" >电子产品<span>2</span></a>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href = "#" id = "item-name" >用户3：物品c</a><span>5</span></div>
-      <div class = "side-seperator"></div>
-      
-      <div class = "side-item"><a href = "#" id = "item-name" >用户3：物品c</a><span>5</span></div>
+      <a href="index.jsp?ceta=5" id = "pad_item" >体育运动<span>2</span></a>
       <div class = "side-seperator"></div>
     </div>
+
+    <div class = "pad_pad">
+     <div class = "pad_header">
+     最近发布
+     </div>
+     <a href="index.jsp?ceta=0" id = "pad_item" >用户1发布-----物品a</a>
+     <div class = "side-seperator"></div>
+
+     <a href="index.jsp?ceta=1" id = "pad_item" >用户2发布-----物品a</a>
+     <div class = "side-seperator"></div>
+
+     <a href="index.jsp?ceta=2" id = "pad_item" >用户2发布-----物品a</a>
+     <div class = "side-seperator"></div>
+
+     <a href="index.jsp?ceta=3" id = "pad_item" >用户3发布-----物品a</a>
+     <div class = "side-seperator"></div>
+
+   </div>
+
+
   </div>
 
 
-  <div class = "right-side">
 
-    <div class = "pad">
+  <div class = "pad_side_right">
+
+    <div class = "pad_pad">
     
-      <div class = "side-header">
+      <div class = "pad_header">
       <%
       System.out.println("hhhhh");
       if (isLogined!=null&&isLogined==true){%>
@@ -115,29 +135,23 @@
       	 System.out.println(temppath);
       %>
       
-      <div class = "side-item"><a href ="<%=temppath %>&tab=info" id = "item-name" >个人中心</a></div>
-      <div class = "side-seperator"></div>
-      
-      <div class = "side-item"><a href ="<%=temppath %>&tab=push" id = "item-name" >发布商品</a></div>
-      <div class = "side-seperator"></div>
-
-      <div class = "side-item"><a href ="<%=temppath %>&tab=setting" id = "item-name" >设置</a></div>
-      <div class = "side-seperator"></div>
-
-      <div class = "side-item"><a href ="<%=temppath %>&tab=mess" id = "item-name" >我的消息</a><span>5</span></div>
-      <div class = "side-seperator"></div>
+	   <a href ="<%=temppath %>&tab=info" id = "pad_item" >个人中心</a>
+	   <div class = "side-seperator"></div>
+	
+	   <a href ="<%=temppath %>&tab=push" id = "pad_item" >发布物品</a>
+	   <div class = "side-seperator"></div>
+	
+	   <a href ="<%=temppath %>&tab=setting" id = "pad_item" >设置</a>
+	   <div class = "side-seperator"></div>
+	
+	   <a href ="<%=temppath %>&tab=mess" id = "pad_item" >消息<span>2</span></a>
+	   <div class = "side-seperator"></div>
 
     </div>
   </div>
 
 			
 			
-<%-- <jsp:include page="site/main.jsp" /> --%>
-<!-- INSERT INTO `goods` VALUES ('1', 'static/goods_img/1.jpg', '4', '笔记本', '1', '4000', '2', '二手笔记本，8成新，I7处理器', 2', '2015-12-12 12:10:10');
-INSERT INTO `goods` VALUES ('2', 'static/goods_img/2.jpg', '2', '被套', '1', '30', '2', '二手被套', '2', '2015-12-16 02:34:01');
-INSERT INTO `goods` VALUES ('3', 'static/goods_img/3.jpg', '2', '自行车', '1', '50', '2', '二手自行车', '2', '2015-12-11 11:22:33');
-INSERT INTO `goods` VALUES ('4', 'static/goods_img/4.jpg', '5', '网球拍', '1', '50', '2', '二手网球拍，用过几天，九成新', '1', '2015-12-17 11:00:16');
-INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '80', '2', '全牛皮篮球，', '1', '2015-12-17 11:02:57'); -->
 
 	<div class = "content">
 	
@@ -146,12 +160,50 @@ INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '
 				GoodsHandle goods=new GoodsHandle();
 				UserHandle users =new UserHandle();
 				System.out.println("初始化数据库 before findAll()");
-			      List <Goods> list=goods.findAll();
+			     /*  List <Goods> list=goods.findAll(); */
+			     List <Goods> list = null;
 			     System.out.println("after findAll()");
-				 System.out.println(list.size());
+				 //System.out.println(list.size());
+				 %>
+				 
+				 <div class = "content_header">
+				 <% 
+				 
+				 String ceta=request.getParameter("ceta");
+				    if(ceta==null || ceta.equals("0")){
+				    	
+						out.println("分类-全部");
+						list=goods.findAll();
+				    }else if(ceta.equals("1")){
+				    	out.println("分类-书籍");
+				    	list=goods.findByCeta(1);
+				    }else if(ceta.equals("2")){
+				    	out.println("分类-生活出行");
+				    	list=goods.findByCeta(2);
+				    }else if(ceta.equals("3")){
+				    	out.println("分类-衣物鞋包");
+				    	list=goods.findByCeta(3);
+				    }else if(ceta.equals("4")){
+				    	out.println("分类-电子产品");
+				    	list=goods.findByCeta(4);
+				    }else if(ceta.equals("5")){
+				    	out.println("分类-体育运动");
+				    	list=goods.findByCeta(5);
+				    }else{
+				    	out.println("分类-全部");
+						list=goods.findAll();
+				    }
+				  
+				%>
+				</div>
+				
+				
+				<%   
 			      if(list.size()!=0){
 			    	System.out.println("size!=0");
+			    	
 			    	  for(Goods good:list){
+			    	if(good.getProducter_id()==null)continue;
 			    	System.out.println("producter_id="+good.getProducter_id());	
 			    	System.out.println(" before users.findById()");
 			    	User USER = users.findById(good.getProducter_id());
@@ -160,6 +212,7 @@ INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '
 			        
 
 			   %>
+			   
 	
 				    <div class="product_box">
 			        <div class="img_box">
@@ -170,7 +223,10 @@ INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '
 			            <a href="#"><%=good.getName()%></a>
 			          </div>
 			          <div class="productor">发布者：<span><a href = "#"><%if(USER.getName()!=null){ %><%=USER.getName() %><%}else{%><%=USER.getUsername()%><%}%> </a></span></div>
-			          <div class = "product_time">时间：<%=good.getCreatDate()%></div>
+			          <div class = "product_time">时间：<%
+ 							SimpleDateFormat s = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
+ 							out.print(s.format(good.getCreatDate()));
+ 							%></div>
 			        </div>
 			      </div>
 			      <div class = "side-seperator"></div>
@@ -197,8 +253,8 @@ INSERT INTO `goods` VALUES ('5', 'static/goods_img/5.jpg', '5', '篮球', '1', '
 		
 			<div class = "side-seperator"></div> -->
 	</div>
-  </div>
-
+ 
+</div>
 
 <%--引入脚部 --%>
 <jsp:include page="site/footer.jsp" />
