@@ -76,11 +76,11 @@
 
    }
    #personal_item #item{
-     margin-left:20px;
+     margin-left:17px;
    }
  .personal_content{
  	 
- 	 
+ 	  position:relative;
       margin-right:20px;
       margin-left:380px;
       margin-top:30px;

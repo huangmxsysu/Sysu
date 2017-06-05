@@ -45,9 +45,13 @@
 </form>
 
 <%
+
  if(request.getParameter("info")!=null && !request.getParameter("info").equals("")){%>
  	<div class="myinfo-success">
- 	<%out.print(new String(request.getParameter("info").getBytes("ISO8859-1"),"UTF-8"));%>
+ 	<%
+ 	request.setCharacterEncoding("utf-8");
+ 	out.print(request.getParameter("info"));
+ 	%>
  	</div>
 <%}%>
  

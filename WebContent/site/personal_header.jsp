@@ -3,34 +3,24 @@
   <div class = "headerbar">
   
   <% 
-     
- /*  HttpServletRequest req = (HttpServletRequest) request ;
-	
-	
-	Cookie[] cookies = req.getCookies();
-	String emailCookie=null;
-	for(Cookie cookie:cookies){
-		if("LOGIN_NAME".equals(cookie.getName())){
-			System.out.println("header.jsp:   LOGIN_NAME == cookie.getName   value ==" + cookie.getValue());
-			System.out.println("cookie剩下" + cookie.getMaxAge() + "秒");
-	
-		}
-	} */
 	
   	 Boolean isLogined=(Boolean)session.getAttribute("isLogined");
      String username=(String)session.getAttribute("UserNameOrName");
-     /* User user=(User)session.getAttribute("loginUser");
-     System.out.println("heaer.jsp: "+user.getName()); */
+     User user=(User)session.getAttribute("loginUser");
+     String temppath = "user/personal.jsp?user=";
+  	 if(isLogined==null || isLogined==false) temppath += "0";
+  	 else temppath += user.getId();
+  	 System.out.println("收藏夹path:"+temppath);
+     /*System.out.println("heaer.jsp: "+user.getName()); */
   %>
-    <div class = "main-icon"><a href = "#">Sysu闲置</a></div>
-
+    <div class = "main-icon"><a href = "index.jsp">Sysu闲置</a></div>
     <div class="header-link">
-      <a href = "#" class="link-item">我的收藏</a>
-      <a href = "#" class="link-item">购物车(0)</a>
+      <a href = "<%=temppath %>&tab=like&page=1" class="link-item">我的收藏</a>
+      <a href = "<%=temppath %>&tab=shopcart" class="link-item">购物车(0)</a>
        <%if (isLogined!=null&&isLogined==true){
             %>
             <a href = "/Sysu/outLoginServlet" class = "link-item">退出登陆</a>
-            <a href = "#" class="link-item"><%=username%></a>
+            <a href = "<%=temppath %>&tab=info" class="link-item"><%=username%></a>
             <%
        }else{%>
             <a href = "user/login.jsp" class="link-item">登陆</a>

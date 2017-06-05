@@ -10,11 +10,9 @@
 
 <%
  
- if(request.getParameter("user").equals("0")) System.out.println("personal:   user==0");
- else System.out.println("personal:   user!==0");
  if((session.getAttribute("isLogined") == null) || ((Boolean)session.getAttribute("isLogined") == false) ) System.out.println("personal:   isLogined==false");
  else System.out.println("personal:   isLogined==true");
- if(request.getParameter("user").equals("0")){
+ if(session.getAttribute("isLogined") == null || ((Boolean)session.getAttribute("isLogined") == false) ){
 	 System.out.println("redirect!!!");
 	 response.sendRedirect("login.jsp?login-info="+java.net.URLEncoder.encode("请先登录网站","UTF-8"));
  }
@@ -61,27 +59,32 @@
       	  
       	  
       	  
-          <a href="user/personal.jsp?user=<%=userId %>&tab=info" id = "personal_item" ><div id = "item">个人信息</div></a>
-	      <div class = "side-seperator"></div>
-	      <%if((session.getAttribute("isLogined") !=null) && ( (Boolean) session.getAttribute("isLogined")).equals(true)){%>
-				<%if( ((User) session.getAttribute("loginUser")) != null && ((User) session.getAttribute("loginUser")).getId()<1000){%>
-				<a href="user/personal.jsp?user=<%=userId %>&tab=auditing" id = "personal_item" ><div id = "item">物品审核</div></a>
-				<div class = "side-seperator"></div>
-				<%}%>
- 
+              <a href="user/personal.jsp?user=<%=userId %>&tab=info" id = "personal_item" ><div id = "item">个人信息</div></a>
+	          <div class = "side-seperator"></div>
 	
 		      <a href="user/personal.jsp?user=<%=userId %>&tab=push" id = "personal_item" ><div id = "item">发布商品</div></a>
+		      <div class = "side-seperator"></div>
+		      
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=pushed"  id = "personal_item" ><div id = "item">已发布</div></a>
 		      <div class = "side-seperator"></div>
 		
 		      <a href="user/personal.jsp?user=<%=userId %>&tab=history&page=1" id = "personal_item" ><div id = "item">购买历史</div></a>
 		      <div class = "side-seperator"></div>
 		
+			  <a href="user/personal.jsp?user=<%=userId %>&tab=shopcart"  id = "personal_item" ><div id = "item">购物车</div></a>
+		      <div class = "side-seperator"></div>
 		
 		      <a href="user/personal.jsp?user=<%=userId %>&tab=like&page=1" id = "personal_item" ><div id = "item">收藏夹</div></a>
 		      <div class = "side-seperator"></div>
 		
-		      <a href="user/personal.jsp?user=<%=userId %>&tab=setting"  id = "personal_item" ><div id = "item">设置</div></a>
+		      <a href="user/personal.jsp?user=<%=userId %>&tab=mess"  id = "personal_item" ><div id = "item">消息</div></a>
 		      <div class = "side-seperator"></div>
+		      
+		      <%if((session.getAttribute("isLogined") !=null) && ( (Boolean) session.getAttribute("isLogined")).equals(true)){%>
+			  <%if( ((User) session.getAttribute("loginUser")) != null && ((User) session.getAttribute("loginUser")).getId()<1000){%>
+				<a href="user/personal.jsp?user=<%=userId %>&tab=auditing" id = "personal_item" ><div id = "item">物品审核</div></a>
+				<div class = "side-seperator"></div>
+			  <%}%>
 	      
 	      <%}%>
     </div>
@@ -95,7 +98,18 @@
 			<jsp:include page="../site/personal/info.jsp" />
 			<%}else if(request.getParameter("tab").equals("auditing")){%>
 			<jsp:include page="../site/personal/auditing.jsp" />
+			<%}else if(request.getParameter("tab").equals("like")){%>
+			<jsp:include page="../site/personal/like.jsp" />
+			<%}else if(request.getParameter("tab").equals("history")){%>
+			<jsp:include page="../site/personal/history.jsp" />
+			<%}else if(request.getParameter("tab").equals("mess")){%>
+			<jsp:include page="../site/personal/mess.jsp" />
+			<%}else if(request.getParameter("tab").equals("pushed")){%>
+			<jsp:include page="../site/personal/pushed.jsp" />
+			<%}else if(request.getParameter("tab").equals("shopcart")){%>
+			<jsp:include page="../site/personal/shopcart.jsp" />
 			<%}%>
+			
 		
 			
   </div>

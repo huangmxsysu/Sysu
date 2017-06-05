@@ -1,19 +1,8 @@
 @CHARSET "UTF-8";
-
-  
-     .content{
-      margin-right:190px;
-      margin-left:260px;
-      margin-top:10px;
-	  padding-bottom:100px;
-	  
-      border:1px solid red;
-
-    }
   .product_box{
     position:relative;
     padding: 20px;
-    height:100px;
+    height:120px;
   }
   .img_box{
     position:absolute;
@@ -24,16 +13,21 @@
     width:100px;
     border-radius:50%;
     border:1px solid #bbb;
+    
   }
   .img_box img{
   	width:100px;
   	height:100px;
   	border-radius:50%;
   }
+  
 
   .content_box{
     position: absolute;
     left:180px;
+    top:50%;
+    transform:translateY(-50%);
+    text-align:justify;
     
   }
   .content_box .product_title a{
@@ -64,14 +58,10 @@
  .img-personal-main-info{
  	width: 80px;
  }
- .personal-main-info{
- 	text-align:center;
- }
- 
-     .content{
-      margin-right:190px;
-      margin-left:260px;
-      margin-top:10px;
-      border:1px solid #eee;
 
+ 
+     .side-seperator{
+      border-top:1px solid #eee;
+      width:100%;
+      margin:0 auto;
     }

@@ -40,6 +40,7 @@
  else{
 	 System.out.println(username);
  }
+ System.out.println("bug");
  /* System.out.println("getUser"+user.getId()); */
  
  %>
@@ -96,13 +97,16 @@
     <div class = "pad">
     
       <div class = "side-header">
-      <%if (isLogined!=null&&isLogined==true){%>
+      <%
+      System.out.println("hhhhh");
+      if (isLogined!=null&&isLogined==true){%>
     	  <%= username %>
     <%}else{ %>
     	  个人
       <%} %>
       </div>
       <% 
+      System.out.println("gggg");
          String temppath = "user/personal.jsp?user=";
       	 if(isLogined==null || isLogined==false) temppath += "0";
       	 else temppath += user.getId();
@@ -118,7 +122,7 @@
       <div class = "side-item"><a href ="<%=temppath %>&tab=setting" id = "item-name" >设置</a></div>
       <div class = "side-seperator"></div>
 
-      <div class = "side-item"><a href ="<%=temppath %>&tab=message" id = "item-name" >我的消息</a><span>5</span></div>
+      <div class = "side-item"><a href ="<%=temppath %>&tab=mess" id = "item-name" >我的消息</a><span>5</span></div>
       <div class = "side-seperator"></div>
 
     </div>

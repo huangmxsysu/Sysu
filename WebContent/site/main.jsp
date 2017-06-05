@@ -3,7 +3,7 @@
     
    
 <div class = "content">
-	      <div class="product_box">
+	    <div class="product_box">
         <div class="img_box">
           <img src="static/user_img/user2.png" alt=""/>
         </div>
