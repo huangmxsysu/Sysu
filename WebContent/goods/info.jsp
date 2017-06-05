@@ -17,12 +17,19 @@
 <jsp:include page="../site/headinfo.jsp" />
 <title>物品详情页</title>
 
+<link href = "src/css/pad.css" rel="stylesheet"/>
 
 </head>
 <body>
 	<jsp:include page="../site/personal_header.jsp" />
+	
+	<div class = "pad_pad">
+		<div class = "pad_header">物品详情页</div>
+		
+	</div>
+	
+	
 
-
-    <jsp:include page="../site/personal_header.jsp" />
+    <jsp:include page="../site/footer.jsp" />
 </body>
 </html>

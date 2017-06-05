@@ -220,7 +220,7 @@
 			        </div>
 			        <div class="content_box">
 			          <div class="product_title">
-			            <a href="#"><%=good.getName()%></a>
+			            <a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
 			          </div>
 			          <div class="productor">发布者：<span><a href = "#"><%if(USER.getName()!=null){ %><%=USER.getName() %><%}else{%><%=USER.getUsername()%><%}%> </a></span></div>
 			          <div class = "product_time">时间：<%
