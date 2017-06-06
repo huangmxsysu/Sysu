@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import src.dbc.DatabaseConnection;
-import src.vo.Goods;
+import xianzhi.dbc.DatabaseConnection;
+import xianzhi.models.Goods;
 
 public class ShopHandle {
 	private Connection conn = null;
