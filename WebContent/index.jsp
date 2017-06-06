@@ -222,7 +222,7 @@
 			          <div class="product_title">
 			            <a href="goods/info.jsp?goodsid=<%=good.getId()%>"><%=good.getName()%></a>
 			          </div>
-			          <div class="productor">发布者：<span><a href = "#"><%if(USER.getName()!=null){ %><%=USER.getName() %><%}else{%><%=USER.getUsername()%><%}%> </a></span></div>
+			          <div class="productor">发布者：<span><a href = "user/someone.jsp?user=1"><%if(USER.getName()!=null){ %><%=USER.getName() %><%}else{%><%=USER.getUsername()%><%}%> </a></span></div>
 			          <div class = "product_time">时间：<%
  							SimpleDateFormat s = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
  							out.print(s.format(good.getCreatDate()));

@@ -17,18 +17,48 @@
 <jsp:include page="../site/headinfo.jsp" />
 <title>物品详情页</title>
 
-<link href = "src/css/pad.css" rel="stylesheet"/>
+<link href = "src/css/detail.css" rel="stylesheet"/>
 
 </head>
 <body>
 	<jsp:include page="../site/personal_header.jsp" />
-	
-	<div class = "pad_pad">
-		<div class = "pad_header">物品详情页</div>
-		
-	</div>
-	
-	
+
+	  <div class = "content">
+    <div class = "content_header">物品详情</div>
+    <div class="product_box">
+        <div class = "img_container">
+          <div class="img_box">
+            <img src="static/goods_img/1.jpg" alt=""/>
+          </div>
+
+          <div class="img_box">
+            <img src="" alt=""/>
+          </div>
+
+          <div class="img_box">
+            <img src="" alt=""/>
+          </div>
+        </div>
+          <div class="content_box">
+            <div class="product_title">
+              <a>网球拍</a>
+              <span class = "type">书籍</span>
+            </div>
+
+            <div class = "product_price"><span>价格：5</span> 数量：2</div>
+            <div class = "product_content">这是一个自己用了两个月的球拍，质量挺好的，外观没有磨损，有兴趣的筒子们可以购买</div>
+            <div class = "productor"><a href = "#">黄木旋</a> 时间：2017-06-06 </div>
+            <div class="operator">
+              <button id = "mybtn" class = "like">收藏</button>
+              <button id = "mybtn" class = "to_cart">加入购物车</button>
+              <button id = "mybtn" class = "buy">购买</button>
+            </div>
+
+          </div>
+        </div>
+        <div class = "side-seperator"></div>
+        
+      </div>
 
     <jsp:include page="../site/footer.jsp" />
 </body>
