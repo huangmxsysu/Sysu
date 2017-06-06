@@ -94,12 +94,12 @@
     margin-top:10px;
     font-size: 0.8em;
   }
-  a{
+  .productor  a{
     text-decoration:none;
     color:#99bbbb;
     margin-right:10px;
   }
-  a:hover{
+  .productor a:hover{
     color:#669999;
     cursor: pointer;
   }

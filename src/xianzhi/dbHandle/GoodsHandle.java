@@ -38,7 +38,9 @@ public class GoodsHandle {
             goods.setStates(rs.getInt(7));
             goods.setContent(rs.getString(8));
             goods.setProducter_id(rs.getInt(9));
-            java.util.Date date = new java.util.Date(rs.getDate(10).getTime());
+//            java.util.Date date = new java.util.Date(rs.getDate(10).getTime());
+            java.sql.Timestamp timeStamp=rs.getTimestamp(10);
+            java.util.Date date=new  java.util.Date(timeStamp.getTime());
             goods.setCreatDate(date);
         }
         this.pstmt.close();
@@ -122,7 +124,9 @@ public class GoodsHandle {
 			good.setImage(rs.getString(5));
 			good.setProducter_id(rs.getInt(6));
 			good.setPrice(rs.getFloat(7));
-		    java.util.Date date= new java.util.Date (rs.getDate(8).getTime());
+//		    java.util.Date date= new java.util.Date (rs.getDate(8).getTime());
+			java.sql.Timestamp timeStamp=rs.getTimestamp(8);
+	        java.util.Date date=new  java.util.Date(timeStamp.getTime());
 		    good.setCreatDate(date);
 		    good.setName(rs.getString(9));
 		    all.add(good) ;
@@ -147,7 +151,10 @@ public class GoodsHandle {
 	        good.setProducter_id(rs.getInt(6));
 	        good.setPrice(rs.getFloat(7));
 	        good.setName(rs.getString(8));
-	        good.setCreatDate((java.util.Date)rs.getDate(9));
+//	        good.setCreatDate((java.util.Date)rs.getDate(9));
+	        java.sql.Timestamp timeStamp=rs.getTimestamp(9);
+            java.util.Date date=new  java.util.Date(timeStamp.getTime());
+            good.setCreatDate(date);
 			all.add(good);
 		}
 		this.pstmt.close() ;
@@ -192,7 +199,9 @@ public class GoodsHandle {
             good.setProducter_id(rs.getInt(6));
             good.setPrice(rs.getFloat(7));
             good.setName(rs.getString(8));
-            java.util.Date date = new java.util.Date(rs.getDate(9).getTime());
+//            java.util.Date date = new java.util.Date(rs.getDate(9).getTime());
+            java.sql.Timestamp timeStamp=rs.getTimestamp(9);
+            java.util.Date date=new  java.util.Date(timeStamp.getTime());
             good.setCreatDate(date);
             all.add(good);
         }

@@ -79,13 +79,13 @@ margin-left:250px;
         </div>
           <div class="content_box">
             <div class="product_title">
-              <a href="#">网球拍</a>
+              <a>网球拍</a>
               <span class = "type">书籍</span>
             </div>
 
             <div class = "product_price"><span>价格：5</span> 数量：2</div>
             <div class = "product_content">这是一个自己用了两个月的球拍，质量挺好的，外观没有磨损，有兴趣的筒子们可以购买</div>
-            <div class = "productor"><a href = "#">黄木旋</a> 时间：2017-06-06 </div>
+            <div class = "productor">时间：2017-06-06 </div>
             <div class="operator">
               <button id = "mybtn" class = "like">收藏</button>
               <button id = "mybtn" class = "to_cart">加入购物车</button>
@@ -112,13 +112,13 @@ margin-left:250px;
             </div>
               <div class="content_box">
                 <div class="product_title">
-                  <a href="#">网球拍</a>
+                  <a>网球拍</a>
                   <span class = "type">书籍</span>
                 </div>
 
                 <div class = "product_price"><span>价格：5</span> 数量：2</div>
                 <div class = "product_content">这是一个自己用了两个月的球拍，质量挺好的，外观没有磨损，有兴趣的筒子们可以购买</div>
-                <div class = "productor"><a href = "#">黄木旋</a> 时间：2017-06-06 </div>
+                <div class = "productor">时间：2017-06-06 </div>
                 <div class="operator">
                   <button id = "mybtn" class = "like">收藏</button>
                   <button id = "mybtn" class = "to_cart">加入购物车</button>
@@ -146,13 +146,13 @@ margin-left:250px;
                 </div>
                   <div class="content_box">
                     <div class="product_title">
-                      <a href="#">网球拍</a>
+                      <a>网球拍</a>
                       <span class = "type">书籍</span>
                     </div>
 
                     <div class = "product_price"><span>价格：5</span> 数量：2</div>
                     <div class = "product_content">这是一个自己用了两个月的球拍，质量挺好的，外观没有磨损，有兴趣的筒子们可以购买</div>
-                    <div class = "productor"><a href = "#">黄木旋</a> 时间：2017-06-06 </div>
+                    <div class = "productor">时间：2017-06-06 </div>
                     <div class="operator">
                       <button id = "mybtn" class = "like">收藏</button>
                       <button id = "mybtn" class = "to_cart">加入购物车</button>

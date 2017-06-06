@@ -84,10 +84,10 @@
       <a href="index.jsp?ceta=3" id = "pad_item" >衣物鞋包<span>3</span></a>
       <div class = "side-seperator"></div>
 
-      <a href="index.jsp?ceta=4" id = "pad_item" >电子产品<span>2</span></a>
+      <a href="index.jsp?ceta=4" id = "pad_item" >体育运动<span>2</span></a>
       <div class = "side-seperator"></div>
 
-      <a href="index.jsp?ceta=5" id = "pad_item" >体育运动<span>2</span></a>
+      <a href="index.jsp?ceta=5" id = "pad_item" >电子产品<span>2</span></a>
       <div class = "side-seperator"></div>
     </div>
 
@@ -224,8 +224,10 @@
 			          </div>
 			          <div class="productor">发布者：<span><a href = "user/someone.jsp?user=1"><%if(USER.getName()!=null){ %><%=USER.getName() %><%}else{%><%=USER.getUsername()%><%}%> </a></span></div>
 			          <div class = "product_time">时间：<%
- 							SimpleDateFormat s = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
- 							out.print(s.format(good.getCreatDate()));
+			        		  java.util.Date date=good.getCreatDate();
+			            	  SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
+			  				  String dateStr =myFmt.format(date);
+  						      out.print(dateStr);
  							%></div>
 			        </div>
 			      </div>

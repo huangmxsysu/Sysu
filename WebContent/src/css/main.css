@@ -30,10 +30,15 @@
     left:180px;
     
   }
-  .content_box .product_title a{
+  .product_title a{
     font-size:1.5em;
     text-decoration: none;
+    color:#99bbbb;
+  }
+  
+   .product_title a:hover{
     color:#669999;
+    cursor: pointer;
   }
 
   .content_box .productor{

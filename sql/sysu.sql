@@ -64,3 +64,23 @@ INSERT INTO `goods` VALUES ('7', 'static/goods_img/7.jpg', '1', '考研书', '1'
 INSERT INTO `goods` VALUES ('8', 'static/goods_img/8.jpg', '1', '公务员书', '1', '30', '2', '公务员考试书籍，9成新', '123', '2015-12-23 16:02:21');
 INSERT INTO `goods` VALUES ('9', 'static/goods_img/9.jpg', '2', '凉席', '1', '60', '2', '寝室牛皮凉席', '123', '2015-12-23 16:20:46');
 INSERT INTO `goods` VALUES ('10', 'static/goods_img/10.jpg', '2', '纯棉枕头', '1', '50', '2', '纯棉枕头', '123', '2015-12-23 16:21:37');
+
+
+-- ----------------------------
+-- Table structure for `order`
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL,
+  `goods_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `message` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
+INSERT INTO `order` VALUES ('1', '1', '10', '2015-12-13 22:02:32', '测试消息');
+
