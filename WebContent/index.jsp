@@ -113,43 +113,43 @@
   </div>
 
 
+<%
+ if(isLogined!=null && isLogined == true){%>
+	 <div class = "pad_side_right">
 
-  <div class = "pad_side_right">
+	    <div class = "pad_pad">
+	    
+	      <div class = "pad_header">
+	      
+	    	  <%= username %>
+	    
+	      </div>
+	      <% 
+	      System.out.println("gggg");
+	         String temppath = "user/personal.jsp?user=";
+	      	 if(isLogined==null || isLogined==false) temppath += "0";
+	      	 else temppath += user.getId();
+	      	 System.out.println(temppath);
+	      %>
+	      
+		   <a href ="<%=temppath %>&tab=info" id = "pad_item" >个人中心</a>
+		   <div class = "side-seperator"></div>
+		
+		   <a href ="<%=temppath %>&tab=push" id = "pad_item" >发布物品</a>
+		   <div class = "side-seperator"></div>
+		
+		   <a href ="<%=temppath %>&tab=setting" id = "pad_item" >设置</a>
+		   <div class = "side-seperator"></div>
+		
+		   <a href ="<%=temppath %>&tab=mess" id = "pad_item" >消息<span>2</span></a>
+		   <div class = "side-seperator"></div>
 
-    <div class = "pad_pad">
-    
-      <div class = "pad_header">
-      <%
-      System.out.println("hhhhh");
-      if (isLogined!=null&&isLogined==true){%>
-    	  <%= username %>
-    <%}else{ %>
-    	  个人
-      <%} %>
-      </div>
-      <% 
-      System.out.println("gggg");
-         String temppath = "user/personal.jsp?user=";
-      	 if(isLogined==null || isLogined==false) temppath += "0";
-      	 else temppath += user.getId();
-      	 System.out.println(temppath);
-      %>
-      
-	   <a href ="<%=temppath %>&tab=info" id = "pad_item" >个人中心</a>
-	   <div class = "side-seperator"></div>
-	
-	   <a href ="<%=temppath %>&tab=push" id = "pad_item" >发布物品</a>
-	   <div class = "side-seperator"></div>
-	
-	   <a href ="<%=temppath %>&tab=setting" id = "pad_item" >设置</a>
-	   <div class = "side-seperator"></div>
-	
-	   <a href ="<%=temppath %>&tab=mess" id = "pad_item" >消息<span>2</span></a>
-	   <div class = "side-seperator"></div>
-
-    </div>
-  </div>
-
+	    </div>
+	  </div>
+<% 
+ }
+%>
+ 
 			
 			
 

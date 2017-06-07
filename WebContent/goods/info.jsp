@@ -17,7 +17,43 @@
 <base href="<%=basePath%>">
 <jsp:include page="../site/headinfo.jsp" />
 <title>物品详情页</title>
-
+<script type="text/javascript">
+function shoppingCart(loginUserId,goodsNum,goodsId){
+	if(loginUserId!=-1){
+		
+	xmlShop=new XMLHttpRequest();
+	xmlShop.onreadystatechange=function()
+	  {
+	  if ((xmlShop.readyState==4)&&(xmlShop.status==200))
+	    {alert("4");
+	    if(xmlShop.responseText=="success")
+	    	{
+	    	alert("5");
+	    	
+	    	document.getElementById("goodsNum").innerHTML=(parseInt(document.getElementById("goodsNum").innerHTML)+1).toString();
+	    		
+	    	}
+	    }
+	  else{
+		  //document.getElementById("auditing-button-"+goodsid).innerHTML="=操作中=";
+	  }
+	  }
+	xmlShop.open("GET","ShoppingCartServlet?goodsId="+goodsId+"&t="+Math.random()+"&userId="+loginUserId,true);
+	xmlShop.send();
+	}
+	else{
+		
+		alert("请登录");
+		
+	}
+	
+	
+	
+	
+	
+	
+}
+</script>
 <link href = "src/css/detail.css" rel="stylesheet"/>
 
 </head>
@@ -26,12 +62,21 @@
 
 <%
 int goodsId=Integer.parseInt(request.getParameter("goodsid"));
+Integer loginUserId=(((User)session.getAttribute("loginUser")).getId());
+Integer goodsNum=0;
+if(loginUserId!=null){
+	 goodsNum=(Integer)session.getAttribute("goodsNum");
+	
+}else{
+	loginUserId=-1;
+	
+}
 	GoodsHandle goodsHandle=new GoodsHandle();
 	UserHandle userHandle=new UserHandle();
 	Goods good=goodsHandle.findById(goodsId);
 	pageContext.setAttribute("good",good);
-	 User user=userHandle.findById(good.getProducter_id());
-	 pageContext.setAttribute("user",user);
+	User Procuteuser=userHandle.findById(good.getProducter_id());
+	 pageContext.setAttribute("Procuteuser",Procuteuser);
 	 int typeId= good.getType_id();
 	 String typeName="";
 	 switch(typeId){
@@ -75,14 +120,15 @@ int goodsId=Integer.parseInt(request.getParameter("goodsid"));
             <div class="product_title">
               <a>${good.getName()}</a>
               <span class = "type"><%=typeName %></span>
+              <!-- 修复标记添加链接 -->
             </div>
 
             <div class = "product_price"><span>价格：5</span> 数量：2</div>
             <div class = "product_content">${good.getContent()}</div>
-            <div class = "productor"><a href = "user/someone.jsp">${user.getName()}(联系邮箱: ${user.getUsername()})</a> 时间：<%=dateStr %> </div>
+            <div class = "productor"><a href = "user/someone.jsp">${Procuteuser.getName()}(联系邮箱: ${Procuteuser.getUsername()})</a> 时间：<%=dateStr%> </div>
             <div class="operator">
               <button id = "mybtn" class = "like">收藏</button>
-              <button id = "mybtn" class = "to_cart">加入购物车</button>
+              <button id = "mybtn" class = "to_cart" onclick="shoppingCart(<%=loginUserId%>,<%=goodsNum %>,<%=good.getId()%>)">加入购物车</button>
               <button id = "mybtn" class = "buy">购买</button>
             </div>
 

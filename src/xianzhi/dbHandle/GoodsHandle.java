@@ -208,4 +208,72 @@ public class GoodsHandle {
         this.pstmt.close();
         return all;
     }
+    
+	//all has passed
+	public List<Goods> findAllPublishedByUser(int userid) throws Exception{
+		List<Goods> all= new ArrayList<Goods>() ;
+		String sql = "SELECT id,type_id,image,create_date,name from goods  where status=2 and producter_id = ?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setInt(1, userid);
+		ResultSet rs = this.pstmt.executeQuery() ;
+		
+		while(rs.next()){
+			
+			Goods good = new Goods() ;
+			good.setId(rs.getInt(1)) ;
+			good.setType_id(rs.getInt(2));
+			good.setImage(rs.getString(3));
+			java.sql.Timestamp timeStamp=rs.getTimestamp(4);
+	        java.util.Date date=new  java.util.Date(timeStamp.getTime());
+		    good.setCreatDate(date);
+		    good.setName(rs.getString(5));
+		    all.add(good) ;
+			}
+			this.pstmt.close() ;
+			return all;
+}
+
+	public List<Goods> findAllNotAuditingByUser(int userid) throws Exception{
+		List<Goods> all = new ArrayList<Goods>() ;
+		String sql = "SELECT id,type_id,image,create_date,name from goods where status=1 and producter_id = ?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setInt(1, userid);
+		ResultSet rs = this.pstmt.executeQuery() ;
+		while(rs.next()){
+			
+			Goods good = new Goods() ;
+			good.setId(rs.getInt(1)) ;
+			good.setType_id(rs.getInt(2));
+			good.setImage(rs.getString(3));
+			java.sql.Timestamp timeStamp=rs.getTimestamp(4);
+	        java.util.Date date=new  java.util.Date(timeStamp.getTime());
+		    good.setCreatDate(date);
+		    good.setName(rs.getString(5));
+		    all.add(good) ;
+			}
+			this.pstmt.close() ;
+			return all;
+	}
+	
+	public List<Goods> findAllRejectedByUser(int userid) throws Exception{
+		List<Goods> all = new ArrayList<Goods>() ;
+		String sql = "SELECT id,type_id,image,create_date,name from goods where status=3 and producter_id = ?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setInt(1, userid);
+		ResultSet rs = this.pstmt.executeQuery() ;
+		while(rs.next()){
+			
+			Goods good = new Goods() ;
+			good.setId(rs.getInt(1)) ;
+			good.setType_id(rs.getInt(2));
+			good.setImage(rs.getString(3));
+			java.sql.Timestamp timeStamp=rs.getTimestamp(4);
+	        java.util.Date date=new  java.util.Date(timeStamp.getTime());
+		    good.setCreatDate(date);
+		    good.setName(rs.getString(5));
+		    all.add(good) ;
+			}
+			this.pstmt.close() ;
+			return all;
+	}
 }

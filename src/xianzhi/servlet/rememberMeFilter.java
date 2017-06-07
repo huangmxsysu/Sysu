@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import xianzhi.dbHandle.UserHandle;
 import xianzhi.models.User;
-
+import xianzhi.dbHandle.ShopHandle;
 /**
  * Servlet Filter implementation class rememberMeFilter
  */
@@ -65,6 +65,9 @@ public class rememberMeFilter implements Filter {
 	  						 	     }else{
 	  						 	    	UserNameOrName=user.getUsername();
 	  						         }
+	  							ShopHandle shopHandle=new ShopHandle();
+								int   goodsNum=	shopHandle.findByUserId(user.getId());
+								ses.setAttribute("goodsNum", goodsNum);
 	  							ses.setAttribute("loginUser",user);
 								ses.setAttribute("UserNameOrName", UserNameOrName);
 								ses.setAttribute("isLogined", true);

@@ -34,7 +34,13 @@
     </div>
     <div class="header-link">
       <a href = "<%=temppath %>&tab=like&page=1" class="link-item">我的收藏</a>
-      <a href = "<%=temppath %>&tab=shopcart" class="link-item">购物车(0)</a>
+      <%int goodsNum=3; 
+			if(session.getAttribute("goodsNum")!=null){
+				
+				goodsNum=(Integer)session.getAttribute("goodsNum");
+			}
+	  %>
+      <a href = "<%=temppath %>&tab=shopcart" class="link-item">购物车(<span style="color:#d00;" id="goodsNum"><%=goodsNum %></span>)</a>
        <%if (isLogined!=null && user!=null &&isLogined==true){
             %>
             <a href = "/Sysu/outLoginServlet" class = "link-item">退出登陆</a>

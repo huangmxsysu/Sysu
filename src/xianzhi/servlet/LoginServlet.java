@@ -82,6 +82,9 @@ public class LoginServlet extends HttpServlet {
 								}else{
 										UserNameOrName=user.getUsername();
 									 }
+//								ShopHandle shopHandle=new ShopHandle();
+//								int   goodsNum=	shopHandle.findByUserId(user.getId());
+//								session.setAttribute("goodsNum", goodsNum);
 								session.setAttribute("UserNameOrName", UserNameOrName);
 								session.setAttribute("loginUser",user);
 								session.setAttribute("isLogined", true);
