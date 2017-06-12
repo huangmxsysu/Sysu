@@ -108,7 +108,7 @@ public class GoodsHandle {
 	//all has passed
 	public List<Goods> findAll() throws Exception{
 		List<Goods> all= new ArrayList<Goods>() ;
-		String sql = "SELECT id,num,content,type_id,image,producter_id,price,create_date,name from goods  where status=?" ;
+		String sql = "SELECT id,num,content,type_id,image,producter_id,price,create_date,name from goods  where status=? order by create_date desc" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1, 2);
 	
@@ -134,10 +134,12 @@ public class GoodsHandle {
 			this.pstmt.close() ;
 			return all;
 }
+	
+	
 
 	public List<Goods> findAllNotAuditing() throws Exception{
 		List<Goods> all = new ArrayList<Goods>() ;
-		String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=1" ;
+		String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=1 order by create_date desc" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		ResultSet rs = this.pstmt.executeQuery() ;
 		Goods good = null ;
@@ -162,7 +164,7 @@ public class GoodsHandle {
 	}
 	public boolean doUpdate(Goods good) throws Exception{
 		boolean flag = false ;
-		String sql = "update goods set id=?,image=?,type_id=?,name=?,num=?,price=?,status=?,content=?,producter_id=?,create_date=? where id=?";
+		String sql = "update goods set id=?,image=?,type_id=?,name=?,num=?,price=?,status=?,content=?,producter_id=?,create_date=? where id=? order by create_date desc";
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		pstmt.setInt(1,good.getId());
 		pstmt.setString(2,good.getImage());
@@ -185,7 +187,7 @@ public class GoodsHandle {
 	
     public List<Goods> findByCeta(int cetaId) throws Exception {
         List<Goods> all = new ArrayList<Goods>();
-        String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=2 and type_id="+cetaId;
+        String sql = "SELECT id,num,content,type_id,image,producter_id,price,name,create_date from goods where status=2 and type_id="+cetaId+" order by create_date desc";
         this.pstmt = this.conn.prepareStatement(sql);
         ResultSet rs = this.pstmt.executeQuery();
         Goods good = null;
@@ -257,7 +259,7 @@ public class GoodsHandle {
 	
 	public List<Goods> findAllRejectedByUser(int userid) throws Exception{
 		List<Goods> all = new ArrayList<Goods>() ;
-		String sql = "SELECT id,type_id,image,create_date,name from goods where status=3 and producter_id = ?" ;
+		String sql = "SELECT id,type_id,image,create_date,name from goods where status=3 and producter_id = ? order by create_date desc" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1, userid);
 		ResultSet rs = this.pstmt.executeQuery() ;
@@ -276,4 +278,44 @@ public class GoodsHandle {
 			this.pstmt.close() ;
 			return all;
 	}
+	
+	public int[] findAllSum() throws Exception{
+		String sql = "SELECT type_id from goods where status=?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setInt(1, 2);
+	
+		ResultSet rs = this.pstmt.executeQuery() ;
+		int[] result = {0,0,0,0,0,0};
+		while(rs.next()){
+			
+		    result[rs.getInt(1)]++;
+		
+			}
+			this.pstmt.close() ;
+			return result;
+	}
+	
+	public List<Goods> findFirst3() throws Exception{
+		List<Goods> all= new ArrayList<Goods>() ;
+		String sql = "SELECT id,create_date,name from goods  where status=? order by create_date desc limit 3" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setInt(1, 2);
+	
+		ResultSet rs = this.pstmt.executeQuery() ;
+		
+		while(rs.next()){
+			
+			Goods good = new Goods() ;
+			good.setId(rs.getInt(1)) ;
+			java.sql.Timestamp timeStamp=rs.getTimestamp(2);
+	        java.util.Date date=new  java.util.Date(timeStamp.getTime());
+		    good.setCreatDate(date);
+		    good.setName(rs.getString(3));
+		    all.add(good) ;
+			}
+			this.pstmt.close() ;
+			return all;
+}
+	
+
 }

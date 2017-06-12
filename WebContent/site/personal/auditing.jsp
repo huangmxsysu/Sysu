@@ -18,7 +18,7 @@ function passGoods(goodsid,type){
 	    if(xmlGoods.responseText=="success")
 	    	{
 	    		if(type=="pass"){
-	    			document.getElementById("auditing-button-"+goodsid).innerHTML="<p class=\"bg-info\">已通过</p>";
+	    			document.getElementById("auditing-button-"+goodsid).innerHTML="<p class=\"flag-success\">已通过</p>";
 	    			
 	    		}
 	    		if(type=="refuse"){document.getElementById("auditing-button-"+goodsid).innerHTML="<p class=\"flag-danger\">已拒绝</p>";}
@@ -86,7 +86,7 @@ function passGoods(goodsid,type){
 	  <td>
 		<div id="auditing-button-<%=goods.getId()%>">
 	  	<button type="button" class="mybtn-success" onclick="passGoods(<%=goods.getId()%>,'pass');">通过</button>
-	  	<button type="button" class="mybtn-danger" onclick="passGoods(<%=goods.getId()%>,'refuse');">拒绝</button>
+	  	<button type="button" class="mybtn-danger" onclick="passGoods(<%=goods.getId()%>,'refuse');">删除</button>
 		</div>
 	  	</td>
 	  </tr>

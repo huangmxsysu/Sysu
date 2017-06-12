@@ -76,7 +76,6 @@ public class RegisterServlet extends HttpServlet {
 						user.setStu_num(stu_num);
 						user.setName(name);
 						user.setId(1);
-						
 			
 						if (userDbHandle.doCreate(user)) {
 							isRegister=true;

@@ -64,7 +64,7 @@ public class UserHandle{
 
 	public User findById(int id) throws Exception{
 		User user = null ;
-		String sql = "SELECT id,username,password,name,stu_num FROM user WHERE id=?" ;
+		String sql = "SELECT id,username,password,name,stu_num,img FROM user WHERE id=?" ;
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		this.pstmt.setInt(1,id) ;
 		ResultSet rs = this.pstmt.executeQuery() ;
@@ -75,6 +75,7 @@ public class UserHandle{
 			user.setPassword(rs.getString(3)) ;
 			user.setName(rs.getString(4)) ;
 			user.setStu_num(rs.getString(5)) ;
+			user.setImg(rs.getString(6));
 		}
 		this.pstmt.close() ;
 		return user ;
@@ -97,6 +98,29 @@ public class UserHandle{
 		}
 		this.pstmt.close();
 		return user ;
+	}
+	
+	public boolean doUpdateImg(User user) throws Exception{
+		boolean flag = false ;
+		String sql = "update user set img=? where id=?" ;
+		this.pstmt = this.conn.prepareStatement(sql) ;
+		this.pstmt.setString(1,user.getImg());
+		this.pstmt.setInt(2, user.getId());
+		if(this.pstmt.executeUpdate() > 0){
+			flag = true ;
+		}
+		this.pstmt.close() ;
+		return flag ;
+	}
+	
+	public void close(){
+		if(this.conn != null){
+			try{
+				this.conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }

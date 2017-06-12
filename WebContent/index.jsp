@@ -72,22 +72,32 @@
       <div class = "pad_header">
       分类
       </div>
-      <a href="index.jsp?ceta=0" id = "pad_item" >全部<span>32</span></a>
+      <%
+      	GoodsHandle Goods= new GoodsHandle();
+        int[] sum = Goods.findAllSum();
+        int allsum = 0;
+        for(int i = 0 ; i < sum.length ; i ++ ) allsum +=sum[i];
+        System.out.println("sumlength========="+sum.length);
+      %>
+      <a href="index.jsp?ceta=6" id = "pad_item" >全部<span><%=allsum %></span></a>
+      <div class = "side-seperator"></div>     
+
+      <a href="index.jsp?ceta=1" id = "pad_item" >书籍<span><%=sum[1] %></span></a>
       <div class = "side-seperator"></div>
 
-      <a href="index.jsp?ceta=1" id = "pad_item" >书籍<span>12</span></a>
+      <a href="index.jsp?ceta=2" id = "pad_item" >生活出行<span><%=sum[2] %></span></a>
       <div class = "side-seperator"></div>
 
-      <a href="index.jsp?ceta=2" id = "pad_item" >生活出行<span>6</span></a>
+      <a href="index.jsp?ceta=3" id = "pad_item" >体育运动<span><%=sum[3] %></span></a>
       <div class = "side-seperator"></div>
 
-      <a href="index.jsp?ceta=3" id = "pad_item" >衣物鞋包<span>3</span></a>
+      <a href="index.jsp?ceta=4" id = "pad_item" >衣物鞋包<span><%=sum[4] %></span></a>
       <div class = "side-seperator"></div>
 
-      <a href="index.jsp?ceta=4" id = "pad_item" >体育运动<span>2</span></a>
+      <a href="index.jsp?ceta=5" id = "pad_item" >电子产品<span><%=sum[5] %></span></a>
       <div class = "side-seperator"></div>
-
-      <a href="index.jsp?ceta=5" id = "pad_item" >电子产品<span>2</span></a>
+      
+      <a href="index.jsp?ceta=0" id = "pad_item" >其他<span><%=sum[0] %></span></a>
       <div class = "side-seperator"></div>
     </div>
 
@@ -95,17 +105,19 @@
      <div class = "pad_header">
      最近发布
      </div>
-     <a href="index.jsp?ceta=0" id = "pad_item" >用户1发布-----物品a</a>
+     <%
+     	
+        List <Goods> first3 = Goods.findFirst3();
+        for (Goods firstgood:first3){
+     %>
+     <a href="goods/info.jsp?goodsid=<%=firstgood.getId()%>" id = "pad_item" >
+     						<%java.util.Date date=firstgood.getCreatDate();
+			            	  SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
+			  				  String dateStr =myFmt.format(date);
+  						      out.print(dateStr); %>
+  						      <p><%=firstgood.getName() %></p></a>
      <div class = "side-seperator"></div>
-
-     <a href="index.jsp?ceta=1" id = "pad_item" >用户2发布-----物品a</a>
-     <div class = "side-seperator"></div>
-
-     <a href="index.jsp?ceta=2" id = "pad_item" >用户2发布-----物品a</a>
-     <div class = "side-seperator"></div>
-
-     <a href="index.jsp?ceta=3" id = "pad_item" >用户3发布-----物品a</a>
-     <div class = "side-seperator"></div>
+     <%} %>
 
    </div>
 
@@ -138,12 +150,12 @@
 		   <a href ="<%=temppath %>&tab=push" id = "pad_item" >发布物品</a>
 		   <div class = "side-seperator"></div>
 		
-		   <a href ="<%=temppath %>&tab=setting" id = "pad_item" >设置</a>
+		   <%-- <a href ="<%=temppath %>&tab=setting" id = "pad_item" >设置</a>
 		   <div class = "side-seperator"></div>
 		
 		   <a href ="<%=temppath %>&tab=mess" id = "pad_item" >消息<span>2</span></a>
 		   <div class = "side-seperator"></div>
-
+ --%>
 	    </div>
 	  </div>
 <% 
@@ -170,10 +182,14 @@
 				 <% 
 				 
 				 String ceta=request.getParameter("ceta");
-				    if(ceta==null || ceta.equals("0")){
+				    if(ceta==null || ceta.equals("6")){
 				    	
 						out.println("分类-全部");
 						list=goods.findAll();
+				    }else if(ceta.equals("0")){
+				    	
+						out.println("分类-其他");
+						list=goods.findByCeta(0);
 				    }else if(ceta.equals("1")){
 				    	out.println("分类-书籍");
 				    	list=goods.findByCeta(1);
@@ -181,13 +197,13 @@
 				    	out.println("分类-生活出行");
 				    	list=goods.findByCeta(2);
 				    }else if(ceta.equals("3")){
-				    	out.println("分类-衣物鞋包");
+				    	out.println("分类-体育运动");
 				    	list=goods.findByCeta(3);
 				    }else if(ceta.equals("4")){
-				    	out.println("分类-电子产品");
+				    	out.println("分类-衣物鞋包");
 				    	list=goods.findByCeta(4);
 				    }else if(ceta.equals("5")){
-				    	out.println("分类-体育运动");
+				    	out.println("分类-电子产品");
 				    	list=goods.findByCeta(5);
 				    }else{
 				    	out.println("分类-全部");

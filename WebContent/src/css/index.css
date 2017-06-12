@@ -80,7 +80,7 @@
 
 
     .footerbar{
-      height:50px;
+      height:40px;
       
       bottom:0px;
       position:fixed;
@@ -89,7 +89,7 @@
       font-size: small;
       background-color: #669999;
       text-align: center;
-      line-height: 50px;
+      line-height: 40px;
       color:#fff;
     }
     

@@ -15,7 +15,7 @@
   	<div class = "form-header">收藏夹</div>
   	
   	
-      <div class="product_box">
+     <!--  <div class="product_box">
         <div class="img_box">
           <img src="static/user_img/user6.png" alt=""/>
         </div>
@@ -59,7 +59,7 @@
       </div>
 
 	<div class = "side-seperator"></div>
-	
+	 -->
   </div>
 </body>
 </html>

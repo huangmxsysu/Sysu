@@ -36,7 +36,7 @@ margin-left:250px;
       <div class = "pad_pad">
         <div class = "pad_header">
           <div class="pad_imgbox">
-            <img src="static/user_img/user1.png" alt=""/>
+            <img src="static/user_img/3.jpg" alt=""/>
           </div>
           <div class="pad_info">
             <div class="personal_name">姓名：黄木旋</div>

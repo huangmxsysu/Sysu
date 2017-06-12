@@ -33,14 +33,13 @@
         <button class="search-icon">搜索</button>
     </div>
     <div class="header-link">
+    <%
+ if(isLogined!=null && isLogined == true){%>
       <a href = "<%=temppath %>&tab=like&page=1" class="link-item">我的收藏</a>
-      <%int goodsNum=3; 
-			if(session.getAttribute("goodsNum")!=null){
-				
-				goodsNum=(Integer)session.getAttribute("goodsNum");
-			}
-	  %>
-      <a href = "<%=temppath %>&tab=shopcart" class="link-item">购物车(<span style="color:#d00;" id="goodsNum"><%=goodsNum %></span>)</a>
+   
+      <a href = "<%=temppath %>&tab=shopcart" class="link-item">购物车(0)</a>
+      
+      <%} %>
        <%if (isLogined!=null && user!=null &&isLogined==true){
             %>
             <a href = "/Sysu/outLoginServlet" class = "link-item">退出登陆</a>
@@ -50,6 +49,6 @@
             <a href = "user/login.jsp" class="link-item">登陆</a>
       		<a href = "user/register.jsp" class="link-item">注册</a>
     <% }%>
-
+	<% System.out.println("ggggggggg"); %>
     </div>
   </div>

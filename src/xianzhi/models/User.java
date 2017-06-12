@@ -6,7 +6,23 @@ public class User {
 	private String password;
 	private String name;
 	private String stu_num;
+	private String img;
+	public String getImg() {
+		String userImg=img;
+		System.out.println("userImg=" + img);
+		if(userImg==null || userImg.length()==0){
+			return "static/user_img/0.jpg";
+		}else{
+			System.out.println("User getImg img="+ userImg);
+			return userImg;
+		}
+		
+	}
 
+	public void setImg(String img) {
+		this.img = img;
+		System.out.println("User setImg img="+ img);
+	}
 	public void setName(String tmp){
 		name=tmp;
 		

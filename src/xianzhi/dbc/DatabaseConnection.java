@@ -13,9 +13,9 @@ public class DatabaseConnection {
 //			  PRIMARY KEY (`id`)
 //			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 	private static final String DBDRIVER = "com.mysql.jdbc.Driver" ; 
-	private static final String DBURL = "jdbc:mysql://127.0.0.1:3306/sysu?useunicode=true&characterEncoding=utf-8" ;
-	private static final String DBUSER = "root" ;
-	private static final String DBPASSWORD = "huangmxsysu" ;
+	private static final String DBURL = "jdbc:mysql://127.0.0.1:3306/14348016?useunicode=true&characterEncoding=utf-8" ;
+	private static final String DBUSER = "user" ;
+	private static final String DBPASSWORD = "123" ;
 	private Connection conn ;
 	public DatabaseConnection() throws Exception {
 		Class.forName(DBDRIVER) ;

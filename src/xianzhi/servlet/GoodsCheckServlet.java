@@ -103,12 +103,14 @@ public class GoodsCheckServlet extends HttpServlet {
 					    if(user != null)
 					    System.out.println("goodservlet:user.getId()=" + user.getId());
 					    good.setProducter_id(user.getId());
-					    
+					    System.out.println("Paser1");
 						goodsQuantity = Float.parseFloat(getForm(request,
 								"quantity-goods"));
+						System.out.println("Paser2");
 						good.setName(goodsName);
 						good.setContent(goodsContent);
 						good.setPrice(goodsQuantity);
+						System.out.println("Paser3");
 
 						request.setAttribute("isCheck", true);
 
@@ -143,13 +145,13 @@ public class GoodsCheckServlet extends HttpServlet {
 							goodsHandle.doCreateGoods(good);
 							
 							
-							response.sendRedirect("user/personal.jsp?tab=push&success=1&info="
+							response.sendRedirect("user/personal.jsp?tab=push&user="+user.getId()+"&success=1&info="
 									+ java.net.URLEncoder.encode("添加成功","UTF-8"));
 							return;
 						} catch (Exception e) {
 							
 							e.printStackTrace();
-							response.sendRedirect("user/personal.jsp?tab=push&info="
+							response.sendRedirect("user/personal.jsp?tab=push&user="+user.getId()+"&info="
 											+ java.net.URLEncoder.encode("数据库异常","UTF-8"));
 							return;
 						} finally {
